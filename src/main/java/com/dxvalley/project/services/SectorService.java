@@ -9,5 +9,6 @@ public interface SectorService {
     Sector editsector (Sector sector);
     List<Sector> getSectors ();
     Sector getSectorById(Long sectorId);
+    Sector getSectorByName(String name);
     void deleteSector( Long sectorId);
 }

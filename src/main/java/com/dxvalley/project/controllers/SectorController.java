@@ -3,7 +3,8 @@ package com.dxvalley.project.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.Sector;
 import com.dxvalley.project.services.SectorService;
 
@@ -35,8 +37,20 @@ public class SectorController {
   }
 
   @PostMapping("/add")
-  Sector addSector(@RequestBody Sector sector) {
-    return sectorService.addSector(sector);
+  public ResponseEntity<CreateResponse> addSector (@RequestBody Sector sector) {
+    Sector sectorToBeChecked= sectorService.getSectorByName(sector.getName());
+    if(sectorToBeChecked!=null)
+    {
+        CreateResponse response = new CreateResponse("error","existing sector name");
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+    else
+    {
+        sectorService.addSector(sector);
+        CreateResponse response = new CreateResponse("success","sector created successfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
   }
 
   @PutMapping("/edit/{sectorId}")

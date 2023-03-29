@@ -6,4 +6,5 @@ import com.dxvalley.project.models.Sector;
 
 public interface SectorRepositories extends JpaRepository<Sector,Long>{
     Sector findSectorBySectorId(Long sectorId);
+    Sector findSectorByName(String name);
 }

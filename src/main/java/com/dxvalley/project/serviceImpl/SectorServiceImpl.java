@@ -40,5 +40,10 @@ public class SectorServiceImpl implements SectorService {
     public void deleteSector(Long sectorId) {
        sectorRepositories.deleteById(sectorId);
     }
+
+    @Override
+    public Sector getSectorByName(String name) {
+        return sectorRepositories.findSectorByName(name);
+    }
     
 }
