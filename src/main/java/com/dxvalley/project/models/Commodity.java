@@ -24,7 +24,7 @@ public class Commodity {
     //commodity union
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "union_id")
-	private Union unionId;
+	private Unions unionId;
 
      //commodity union
      @ManyToOne(fetch = FetchType.LAZY)

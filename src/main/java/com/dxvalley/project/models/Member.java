@@ -27,9 +27,6 @@ public class Member {
     @JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
     @Column(name="date_created")
     private String dateCreated;
-    @JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
-    @Column(name="date_joined")
-    private String dateJoined;
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
     

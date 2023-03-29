@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class Union {
+public class Unions {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long unionId;
@@ -39,7 +39,9 @@ public class Union {
 
     //union sector
     @ManyToOne
-    private sector sector;
+    private Sector sector;
+
+
     
 
 

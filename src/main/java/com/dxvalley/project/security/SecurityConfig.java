@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 //import static org.springframework.http.HttpMethod.*;
 
 import com.dxvalley.project.security.filters.JwtAuthenticationFilter;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 import com.dxvalley.project.security.filters.JwtAuthorizationFilter;
 
 import lombok.RequiredArgsConstructor;
@@ -42,18 +44,18 @@ public class SecurityConfig{
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     return http
-        .csrf(AbstractHttpConfigurer::disable)
-        .cors().and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .authorizeHttpRequests(auth -> {
-          auth.requestMatchers("/**").permitAll();
-          // auth.requestMatchers("/api/**").hasAuthority("equbUser");
-          // auth.requestMatchers("/otp/**").permitAll();
-          // auth.requestMatchers("/auth/**").permitAll();
-        })
-        .addFilter(new JwtAuthenticationFilter(authenticationManager(authenticationConfiguration)))
-        .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-        .build();
+            .csrf(AbstractHttpConfigurer::disable)
+            .cors(withDefaults())
+            .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> {
+                auth.requestMatchers("/**").permitAll();
+                // auth.requestMatchers("/api/**").hasAuthority("equbUser");
+                // auth.requestMatchers("/otp/**").permitAll();
+                // auth.requestMatchers("/auth/**").permitAll();
+            })
+            .addFilter(new JwtAuthenticationFilter(authenticationManager(authenticationConfiguration)))
+            .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+            .build();
   }
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

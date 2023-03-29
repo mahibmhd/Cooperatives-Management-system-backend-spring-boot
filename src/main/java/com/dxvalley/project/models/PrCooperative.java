@@ -40,5 +40,9 @@ public class PrCooperative {
 
      //prCooperative sector
      @ManyToOne
-     private sector sector;
+     private Sector sector;
+
+     //prCooperative union
+     @ManyToOne
+     private Unions union;
 }

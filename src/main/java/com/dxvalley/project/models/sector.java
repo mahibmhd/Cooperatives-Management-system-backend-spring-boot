@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class sector {
+public class Sector {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long prTypeId;
-    private String typeName;
+    private Long sectorId;
+    private String name;
 }
