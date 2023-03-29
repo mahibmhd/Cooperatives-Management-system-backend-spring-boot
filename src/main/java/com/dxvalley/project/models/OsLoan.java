@@ -1,4 +1,8 @@
 package com.dxvalley.project.models;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,9 +15,12 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class prType {
+public class OsLoan {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long prTypeId;
-    private String typeName;
+    private Long osLoanId;
+    private Double osLoanValue;
+    @JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
+    @Column(name="date_generated")
+    private String dateGenerated;
 }
