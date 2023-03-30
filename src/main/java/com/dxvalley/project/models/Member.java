@@ -34,13 +34,13 @@ public class Member {
     private Address address;
 
     //asset with union
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
-	private Unions unionId;
+	private Unions union;
 
     //asset with prCooperative
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
-	private PrCooperative prCooperativeId;
+	private PrCooperative prCooperative;
     
 }
