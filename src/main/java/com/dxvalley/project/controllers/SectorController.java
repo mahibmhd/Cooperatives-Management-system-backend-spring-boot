@@ -44,6 +44,12 @@ public class SectorController {
         CreateResponse response = new CreateResponse("error","existing sector name");
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+    else if(sector.getName().equals(""))
+    {
+            
+        CreateResponse response = new CreateResponse("error","name cannot be null");
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
     else
     {
         sectorService.addSector(sector);
