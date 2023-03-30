@@ -23,13 +23,13 @@ public class Asset {
     private Double value;
     private String type;
 
-    //user with union
-    @ManyToOne(fetch = FetchType.LAZY)
+    //asset with union
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
-	private Unions unionId;
+	private Unions union;
 
-    //user with prCooperative
-    @ManyToOne(fetch = FetchType.LAZY)
+    //asset with prCooperative
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
-	private PrCooperative prCooperativeId;
+	private PrCooperative prCooperative;
 }
