@@ -33,12 +33,12 @@ public class Member {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    //asset with union
+    //member with union
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
 	private Unions union;
 
-    //asset with prCooperative
+    //member with prCooperative
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
 	private PrCooperative prCooperative;

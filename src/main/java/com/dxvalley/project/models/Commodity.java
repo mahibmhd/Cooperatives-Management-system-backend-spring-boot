@@ -22,12 +22,12 @@ public class Commodity {
     private String type;
 
     //commodity union
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_id")
-	private Unions unionId;
+	private Unions union;
 
      //commodity union
-     @ManyToOne(fetch = FetchType.LAZY)
+     @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn(name = "prcooperative_id")
-     private PrCooperative prCooperativeId;
+     private PrCooperative prCooperative;
 }
