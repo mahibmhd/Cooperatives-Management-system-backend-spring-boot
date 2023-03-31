@@ -27,7 +27,7 @@ public class AccountBalance {
     @Column(name="date_generated")
     private String dateGenerated;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "account_id")
-	private Account accountId;
+	private Account account;
 }
