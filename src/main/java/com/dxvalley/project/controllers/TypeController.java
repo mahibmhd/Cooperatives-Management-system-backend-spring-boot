@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
-import com.dxvalley.project.models.Sector;
 import com.dxvalley.project.models.Type;
-import com.dxvalley.project.services.SectorService;
 import com.dxvalley.project.services.TypeService;
 
 import lombok.RequiredArgsConstructor;

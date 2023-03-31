@@ -23,11 +23,11 @@ public class Account {
     private String branch;
     private String district;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_id")
-	private Unions unionId;
+	private Unions union;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_id")
 	private PrCooperative prCooperative;
 }

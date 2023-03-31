@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.dxvalley.project.models.Account;
 import com.dxvalley.project.models.Users;
 import com.dxvalley.project.repositories.RoleRepository;
 import com.dxvalley.project.repositories.UserRepository;
@@ -37,16 +36,16 @@ public class UserController {
   private final RoleRepository roleRepo;
   private final PasswordEncoder passwordEncoder;
 
-  private boolean isSysAdmin() {
-    AtomicBoolean hasSysAdmin = new AtomicBoolean(false);
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    auth.getAuthorities().forEach(grantedAuthority -> {
-      if (grantedAuthority.getAuthority().equals("sysAdmin")) {
-        hasSysAdmin.set(true);
-      }
-    });
-    return hasSysAdmin.get();
-  }
+  // private boolean isSysAdmin() {
+  //   AtomicBoolean hasSysAdmin = new AtomicBoolean(false);
+  //   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+  //   auth.getAuthorities().forEach(grantedAuthority -> {
+  //     if (grantedAuthority.getAuthority().equals("sysAdmin")) {
+  //       hasSysAdmin.set(true);
+  //     }
+  //   });
+  //   return hasSysAdmin.get();
+  // }
 
   private boolean isOwnAccount(String userName) {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
