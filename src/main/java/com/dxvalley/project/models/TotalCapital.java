@@ -28,7 +28,7 @@ public class TotalCapital {
     private String dateGenerated;
 
     //total capital with prCooperatives
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
-	private PrCooperative prCooperativeId;
+	private PrCooperative prCooperative;
 }

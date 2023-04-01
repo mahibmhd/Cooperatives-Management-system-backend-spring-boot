@@ -27,12 +27,12 @@ public class OsLoan {
     @Column(name="date_generated")
     private String dateGenerated;
     //os loan with union
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
-	private Unions unionId;
+	private Unions union;
 
     //os loan with prCooperative
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
-	private PrCooperative prCooperativeId;
+	private PrCooperative prCooperative;
 }
