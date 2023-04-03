@@ -46,7 +46,7 @@ public class PaidUpShareController {
   }
 
   @PutMapping("/edit/{paidUpShareId}")
-  PaidUpShare editSector(@RequestBody PaidUpShare tempPaidUpShare, @PathVariable Long paidUpShareId) {
+  PaidUpShare editPaidUpShare(@RequestBody PaidUpShare tempPaidUpShare, @PathVariable Long paidUpShareId) {
     PaidUpShare paidUpShare = this.paidUpShareService.getPaidUpShareById(paidUpShareId);
     paidUpShare.setPaidUpValue(tempPaidUpShare.getPaidUpValue());
     paidUpShare.setDateGenerated(tempPaidUpShare.getDateGenerated());

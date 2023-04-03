@@ -19,7 +19,7 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class AnuualTurnOver {
+public class AnnualTurnOver {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long annualTurnOverId;
@@ -29,7 +29,7 @@ public class AnuualTurnOver {
     private String dateGenerated;
 
     //annual turn over with union
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
-	private Unions unionId;
+	private Unions union;
 }

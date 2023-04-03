@@ -34,7 +34,7 @@ public class AssetController {
   }
 
   @GetMapping("/{assetId}")
-  Asset getSector(@PathVariable Long assetId) {
+  Asset getAsset(@PathVariable Long assetId) {
     return assetService.getAssetById(assetId);
   }
 
@@ -60,6 +60,7 @@ public class AssetController {
     Asset asset = this.assetService.getAssetById(assetId);
     asset.setAssetName(tempAsset.getAssetName());
     asset.setValue(tempAsset.getValue());
+    asset.setType(tempAsset.getType());
     asset.setPrCooperative(tempAsset.getPrCooperative());
     asset.setUnion(tempAsset.getUnion());
     return assetService.editAsset(asset);

@@ -27,7 +27,8 @@ public class AnnualSell {
     @Column(name="date_generated")
     private String dateGenerated;
     //annual sell with prCooperative
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
-	private PrCooperative prCooperativeId;
+	private PrCooperative prCooperative;
 }
+
