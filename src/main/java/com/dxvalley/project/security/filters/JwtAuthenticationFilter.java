@@ -1,6 +1,7 @@
 package com.dxvalley.project.security.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.dxvalley.project.repositories.UserRepository;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,7 +35,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter  {
     private final AuthenticationManager authenticationManager;
-    
+    private final UserRepository userRepository;
 
   @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -62,12 +63,25 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
       User user = (User)authResult.getPrincipal();
       String privateKey = "jbschjbdhjcbdbvdjfvbvbfj";
       Algorithm algorithm = Algorithm.HMAC256(privateKey.getBytes());
-        
+      Long unionId;
+      Long prCooperativeId;
+      try {
+        unionId = userRepository.findByUsername(user.getUsername()).getUnion().getUnionId();
+      }catch (Exception e){
+        unionId = null;
+      }
+      try {
+        prCooperativeId = userRepository.findByUsername(user.getUsername()).getPrCooperative().getPrCooperativeId();
+      }catch (Exception e){
+        prCooperativeId = null;
+      }
         String access_token = JWT.create()
                     .withSubject(user.getUsername())
                     .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 30 * 1000))
                     .withIssuer(request.getRequestURL().toString())
                     .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                    .withClaim("unionId", unionId)
+                    .withClaim("prCooperativeId", prCooperativeId)
                     .sign(algorithm);
         String refresh_token = JWT.create()
                 .withSubject(user.getUsername())

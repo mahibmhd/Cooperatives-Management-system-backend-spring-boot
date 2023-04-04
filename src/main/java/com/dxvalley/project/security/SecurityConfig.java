@@ -16,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //import static org.springframework.http.HttpMethod.*;
 
+import com.dxvalley.project.repositories.UserRepository;
 import com.dxvalley.project.security.filters.JwtAuthenticationFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -31,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig{
     private final CustomUserDeatailsService customUserDetailsService;
     private final PasswordEncoder passwordEncoder;
-  
+    private final UserRepository userRepository; 
     private final AuthenticationConfiguration authenticationConfiguration;
 
     @Bean
@@ -53,7 +54,7 @@ public class SecurityConfig{
                 // auth.requestMatchers("/otp/**").permitAll();
                 // auth.requestMatchers("/auth/**").permitAll();
             })
-            .addFilter(new JwtAuthenticationFilter(authenticationManager(authenticationConfiguration)))
+            .addFilter(new JwtAuthenticationFilter(authenticationManager(authenticationConfiguration), userRepository))
             .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
             .build();
   }
