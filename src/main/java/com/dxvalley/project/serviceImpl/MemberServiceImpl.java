@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.Member;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.MemberRepository;
 import com.dxvalley.project.services.MemberService;
@@ -45,6 +46,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> getMembersByUnion(Unions union) {
       return  memberRepository.findMemberByUnion(union);
+    }
+
+    @Override
+    public List<Member> getMemberByPrCooperative(PrCooperative prCooperative) {
+       return memberRepository.findMemberByPrCooperative(prCooperative);
     }
     
 }

@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.Commodity;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.CommodityService;
+import com.dxvalley.project.services.PrCooperativeService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,9 +29,23 @@ import lombok.RequiredArgsConstructor;
 public class CommodityController {
     @Autowired
     private final CommodityService commodityService;
+    private final UnionService unionService;
+    private final PrCooperativeService prCooperativeService;
     @GetMapping("/getcommodities")
     List<Commodity> getCommodities() {
         return this.commodityService.getCommodities();
+    }
+
+    @GetMapping("getByUnionId/{unionId}")
+    List<Commodity> getCommodityByUnionId(@PathVariable Long unionId) {
+        Unions union=unionService.getUnionById(unionId);
+        return commodityService.getCommodityByUnion(union);
+    }
+
+    @GetMapping("getByPrCooperativeId/{prCooperativeId}")
+    List<Commodity> getLiabiltyByPrCooperativeId(@PathVariable Long prCooperativeId) {
+        PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
+        return commodityService.getCommodityByPrCooperative(prCooperative);
     }
 
     @GetMapping("/{commodityId}")

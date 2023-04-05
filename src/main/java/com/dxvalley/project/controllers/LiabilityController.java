@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.Liabilty;
+import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.LiabilityService;
+import com.dxvalley.project.services.PrCooperativeService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,10 +29,24 @@ import lombok.RequiredArgsConstructor;
 public class LiabilityController {
     @Autowired
     private final LiabilityService liabilityService;
+    private final UnionService unionService;
+    private final PrCooperativeService prCooperativeService;
 
     @GetMapping("/getLiabilities")
     List<Liabilty> getLiabilities() {
         return this.liabilityService.getLiabilties();
+    }
+
+    @GetMapping("getByUnionId/{unionId}")
+    List<Liabilty> getLiabiltyByUnionId(@PathVariable Long unionId) {
+        Unions union=unionService.getUnionById(unionId);
+        return liabilityService.getLiabiltyByUnion(union);
+    }
+
+    @GetMapping("getByPrCooperativeId/{prCooperativeId}")
+    List<Liabilty> getLiabiltyByPrCooperativeId(@PathVariable Long prCooperativeId) {
+        PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
+        return liabilityService.getLiabiltyByPrCooperative(prCooperative);
     }
 
     @GetMapping("/{liabilityId}")

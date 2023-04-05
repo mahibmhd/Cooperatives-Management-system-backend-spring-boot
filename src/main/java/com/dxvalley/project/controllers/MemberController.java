@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.Member;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.MemberService;
+import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class MemberController {
     @Autowired
     private final MemberService memberService;
     private final UnionService unionService;
+    private final PrCooperativeService prCooperativeService;
 
     @GetMapping("/getMembers")
     List<Member> getMembers() {
@@ -38,6 +41,12 @@ public class MemberController {
     List<Member> getMemberByUnionId(@PathVariable Long unionId) {
         Unions union=unionService.getUnionById(unionId);
         return memberService.getMembersByUnion(union);
+    }
+
+    @GetMapping("getByPrCooperativeId/{prCooperativeId}")
+    List<Member> getMemberByPrCooperativeId(@PathVariable Long prCooperativeId) {
+        PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
+        return memberService.getMemberByPrCooperative(prCooperative);
     }
 
     @GetMapping("/{memberId}")

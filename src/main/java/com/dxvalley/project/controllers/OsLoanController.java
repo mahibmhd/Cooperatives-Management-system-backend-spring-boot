@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.OsLoan;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.OsLoanService;
+import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ public class OsLoanController {
     @Autowired
     private final OsLoanService osLoanService;
     private final UnionService unionService;
+    private final PrCooperativeService prCooperativeService;
 
     @GetMapping("/getosLoans")
     List<OsLoan> getosLoans() {
@@ -38,6 +41,11 @@ public class OsLoanController {
     List<OsLoan> getOsLoanByUnionId(@PathVariable Long unionId) {
         Unions union=unionService.getUnionById(unionId);
         return osLoanService.getOsLoansByUnion(union);
+    }
+    @GetMapping("getByPrCooperativeId/{prCooperativeId}")
+    List<OsLoan> getOsLoanByPrCooperativeId(@PathVariable Long prCooperativeId) {
+        PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
+        return osLoanService.getOsLoanByPrCooperative(prCooperative);
     }
 
     @GetMapping("/{osLoanId}")
