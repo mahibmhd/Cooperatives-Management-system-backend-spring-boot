@@ -1,5 +1,4 @@
 package com.dxvalley.project.models;
-import org.springframework.data.jpa.repository.Query;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
