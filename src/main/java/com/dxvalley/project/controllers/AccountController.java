@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.Account;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.AccountService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class AccountController {
     @Autowired
     private final AccountService accountService;
+    private final UnionService unionService;
     
     @GetMapping("/getaccounts")
     List<Account> getAccounts() {
@@ -34,6 +37,12 @@ public class AccountController {
     @GetMapping("/{accountId}")
     Account getAccount(@PathVariable Long accountId) {
         return accountService.getAccountById(accountId);
+    }
+
+    @GetMapping("getByUnionId/{unionId}")
+    List<Account> getAccountByUnionId(@PathVariable Long unionId) {
+        Unions union=unionService.getUnionById(unionId);
+        return accountService.getAccountByUnion(union);
     }
 
     @PostMapping("/add")

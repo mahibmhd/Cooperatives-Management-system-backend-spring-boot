@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.Account;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.AccountRepository;
 import com.dxvalley.project.services.AccountService;
 
@@ -46,6 +47,11 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public Account getAccountByAccountNumber(String accountNumber) {
         return accountRepository.findAccountyByAccountNumber(accountNumber);
+    }
+
+    @Override
+    public List<Account> getAccountByUnion(Unions union) {
+        return accountRepository.findAccountByUnion(union);
     }
     
 }

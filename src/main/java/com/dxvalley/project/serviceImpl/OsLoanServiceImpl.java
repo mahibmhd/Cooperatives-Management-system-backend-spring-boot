@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.OsLoan;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.OsLoanRepository;
 import com.dxvalley.project.services.OsLoanService;
 
@@ -40,5 +41,12 @@ public class OsLoanServiceImpl implements OsLoanService {
     public void deleteOsLoan(Long osLoanId) {
          osLoanRepository.deleteById(osLoanId);
     }
+
+   @Override
+   public List<OsLoan> getOsLoansByUnion(Unions union) {
+      return osLoanRepository.findOsLoanByUnion(union);
+   }
+
+   
     
 }

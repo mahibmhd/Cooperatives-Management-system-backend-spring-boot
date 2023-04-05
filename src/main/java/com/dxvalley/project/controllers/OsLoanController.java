@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.OsLoan;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.OsLoanService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,9 +27,17 @@ import lombok.RequiredArgsConstructor;
 public class OsLoanController {
     @Autowired
     private final OsLoanService osLoanService;
+    private final UnionService unionService;
+
     @GetMapping("/getosLoans")
     List<OsLoan> getosLoans() {
         return this.osLoanService.getOsLoans();
+    }
+
+    @GetMapping("getByUnionId/{unionId}")
+    List<OsLoan> getOsLoanByUnionId(@PathVariable Long unionId) {
+        Unions union=unionService.getUnionById(unionId);
+        return osLoanService.getOsLoansByUnion(union);
     }
 
     @GetMapping("/{osLoanId}")
