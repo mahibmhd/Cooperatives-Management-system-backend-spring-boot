@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.AnnualTurnOver;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.AnnualTurnOverRepository;
 import com.dxvalley.project.services.AnnualTurnOverService;
 
@@ -41,10 +42,18 @@ public class AnnualTurnOverImpl implements AnnualTurnOverService {
         return annualTurnOverRepositories.findAnnualTurnOverByAnnualTurnOverId(annualTurnOverId);
     }
 
+   
+
     @Override
     public void deleteAnnualTurnOver(Long annualTurnOverId) {
         annualTurnOverRepositories.deleteById(annualTurnOverId);
     }
+
+    @Override
+    public List<AnnualTurnOver> getAnnualTurnOverByUnion(Unions union) {
+      return annualTurnOverRepositories.findAnnualTurnOverByUnion(union);
+    }
+
     }
     
 

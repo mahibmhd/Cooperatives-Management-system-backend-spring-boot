@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.Asset;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.AssetService;
+import com.dxvalley.project.services.PrCooperativeService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +31,8 @@ public class AssetController {
 
     @Autowired
     private final AssetService assetService;
+    private final UnionService unioonService;
+    private final PrCooperativeService prCooperativeeService;
 
     @GetMapping("/getAssets")
     List<Asset> getAsset() {
@@ -37,6 +43,18 @@ public class AssetController {
   Asset getAsset(@PathVariable Long assetId) {
     return assetService.getAssetById(assetId);
   }
+
+  @GetMapping("/union/{unionId}")
+  List<Asset> getAssetByUnionId(@PathVariable Long unionId)  {
+  Unions  union=unioonService.getUnionById(unionId); 
+  return assetService.getAssetByUnion(union);
+}
+
+@GetMapping("/prCooperative/{prCooperativeId}")
+List<Asset> getAssetByPrCooperativeId(@PathVariable Long prCooperativeId)  {
+PrCooperative prCooperative =prCooperativeeService.getPrCooperativeById(prCooperativeId);
+return assetService.getAssetByPrCooperative(prCooperative);
+}
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse> addSector (@RequestBody Asset asset) {

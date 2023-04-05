@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 
 import com.dxvalley.project.models.PaidUpShare;
+import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.PaidUpShareRepository;
 import com.dxvalley.project.services.PaidUpShareService;
 
@@ -42,6 +44,16 @@ public class PaidUpShareServiceImpl implements PaidUpShareService {
     @Override
     public void deletegetPaidUpShare(Long PaidUpShareId) {
         paidUpShareRepository.deleteById(PaidUpShareId);
+    }
+
+    @Override
+    public List<PaidUpShare> getPaidUpShareByUnion(Unions union) {
+        return paidUpShareRepository.findPaidUpShareByUnion(union);
+    }
+
+    @Override
+    public List<PaidUpShare> getPaidUpShareByPrCooperative(PrCooperative prCooperative) {
+       return paidUpShareRepository.findPaidUpShareByPrCooperative(prCooperative);
     }
     
 }

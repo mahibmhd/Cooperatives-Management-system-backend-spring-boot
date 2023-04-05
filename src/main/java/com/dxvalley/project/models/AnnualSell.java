@@ -1,4 +1,6 @@
 package com.dxvalley.project.models;
+import org.springframework.data.jpa.repository.Query;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -30,5 +32,11 @@ public class AnnualSell {
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
 	private PrCooperative prCooperative;
+
+
+
+//     @Query( "SELECT pg FROM Book bk join bk.pages pg WHERE bk.bookId = :bookId")
+//  List<Page> findPagesByBookId(@Param("bookId") String bookId);
+
 }
 

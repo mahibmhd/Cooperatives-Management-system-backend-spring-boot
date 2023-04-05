@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.AnnualSell;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.repositories.AnnualSellRepository;
 import com.dxvalley.project.services.AnnualSellService;
 
@@ -45,5 +46,13 @@ public class AnnualSellServiceImpl implements AnnualSellService {
     public void deleteAnnuualSell(Long annualSellId) {
         annualSellRepositories.deleteById(annualSellId);
     }
+
+    @Override
+    public List<AnnualSell> getAnnualSellByPrCooperative(PrCooperative prCooperative) {
+       return annualSellRepositories.findAnnualSellByPrCooperative(prCooperative);
+    }
+
+   
+
     
 }

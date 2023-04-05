@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.PaidUpShare;
+import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.PaidUpShareService;
+import com.dxvalley.project.services.PrCooperativeService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +30,8 @@ import lombok.RequiredArgsConstructor;
 public class PaidUpShareController {
     @Autowired
     private final PaidUpShareService paidUpShareService;
+    private final UnionService UnnionService; 
+    private final PrCooperativeService prrCooperativeService;
     
     @GetMapping("/getPaidUpShares")
     List<PaidUpShare> getPaidUpShare () {
@@ -36,6 +42,18 @@ public class PaidUpShareController {
   PaidUpShare getPaidUpShare(@PathVariable Long paidUpShareId) {
     return paidUpShareService.getPaidUpShareById(paidUpShareId);
   }
+
+  @GetMapping("/union/{unionId}")
+  List<PaidUpShare> getPaidUpShareByUnionId(@PathVariable Long unionId)  {
+  Unions  union=UnnionService.getUnionById(unionId); 
+  return paidUpShareService.getPaidUpShareByUnion(union);
+}
+
+  @GetMapping("/prCooperative/{prCooperativeId}")
+  List<PaidUpShare> getPaidUpShareByPrCooperativeId(@PathVariable Long prCooperativeId)  {
+  PrCooperative prCooperative=prrCooperativeService.getPrCooperativeById(prCooperativeId);
+  return paidUpShareService.getPaidUpShareByPrCooperative(prCooperative);
+}
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse> addCommodity(@RequestBody PaidUpShare paidUpShare) {

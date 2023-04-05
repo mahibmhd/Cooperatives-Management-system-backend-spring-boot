@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
 import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.PrCooperativeService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class PrCooperativeController {
     @Autowired 
     private final PrCooperativeService prCooperativeService;
+    private final UnionService UnnionService;
   
   @GetMapping("/getPrCooperatives")
   List<PrCooperative> getPrCooperative() {
@@ -37,6 +40,12 @@ public class PrCooperativeController {
   PrCooperative getPrCooperative(@PathVariable Long prCooperativeId) {
     return prCooperativeService.getPrCooperativeById(prCooperativeId);
   }
+
+  @GetMapping("/union/{unionId}")
+  List<PrCooperative> getPrCooperativeByUnionId(@PathVariable Long unionId)  {
+  Unions  union=UnnionService.getUnionById(unionId); 
+  return prCooperativeService.getPrCooperativeByUnion(union); 
+}
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse>  addPrCooperative(@RequestBody PrCooperative prCooperative) {

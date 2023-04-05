@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.PrCooperative;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.PrCooperativeRepository;
 import com.dxvalley.project.services.PrCooperativeService;
 
@@ -45,6 +46,11 @@ public class PrCooperativeServiceImpl implements PrCooperativeService{
     public void deletePrCooperative(Long prCooperativeId) {
        prCooperativeRepository.deleteById(prCooperativeId);
     }
+
+   @Override
+   public List<PrCooperative> getPrCooperativeByUnion(Unions union) {
+      return prCooperativeRepository.findPrCooperativeByUnion(union);
+   }
 
     
     

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.AnnualSell;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.services.AnnualSellService;
+import com.dxvalley.project.services.PrCooperativeService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,7 @@ public class AnnualSellController {
     
     @Autowired
     private final AnnualSellService annualSellService;
+    private final PrCooperativeService prcCooperativeService;
 
     @GetMapping("/getAnnualSell")
     List<AnnualSell> getAnnualSell () {
@@ -37,6 +40,13 @@ public class AnnualSellController {
   AnnualSell getAnnualSell(@PathVariable Long annualSellId) {
     return annualSellService.getAnnualSellById(annualSellId);  
   }
+
+  @GetMapping("/prCooperative/{prCooperativeId}")
+    List<AnnualSell> getAnnualSellByPrCooperativeId(@PathVariable Long prCooperativeId) {
+    PrCooperative prCooperative=prcCooperativeService.getPrCooperativeById(prCooperativeId);
+    return annualSellService.getAnnualSellByPrCooperative(prCooperative); 
+  }
+
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse> addCommodity(@RequestBody AnnualSell annualSell) {

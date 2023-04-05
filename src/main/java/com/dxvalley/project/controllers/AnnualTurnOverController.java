@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.AnnualTurnOver;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.AnnualTurnOverService;
+import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +28,8 @@ import lombok.RequiredArgsConstructor;
 public class AnnualTurnOverController {
 
     @Autowired
-    private AnnualTurnOverService annualTurnOverService;
+    private final AnnualTurnOverService annualTurnOverService;
+    private final UnionService UnionnService;
 
 
     @GetMapping("/getAnnualTurnOver")
@@ -38,6 +41,12 @@ public class AnnualTurnOverController {
   AnnualTurnOver getAnnualTurnOver(@PathVariable Long annualTurnOverId) {
     return annualTurnOverService.getAnnualTurnOverById(annualTurnOverId);
   }
+
+  @GetMapping("/union/{unionId}")
+  List<AnnualTurnOver> getAnnualTurnOverByUnionId(@PathVariable Long unionId)  {
+  Unions  union=UnionnService.getUnionById(unionId); 
+  return annualTurnOverService.getAnnualTurnOverByUnion(union); 
+}
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse> addCommodity(@RequestBody AnnualTurnOver annualTurnOver) {
