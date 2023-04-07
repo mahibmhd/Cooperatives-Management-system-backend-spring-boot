@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.dxvalley.project.models.Account;
 import com.dxvalley.project.models.AccountBalance;
 import com.dxvalley.project.repositories.AccountBalanceRepository;
 import com.dxvalley.project.services.AccountBalanceService;
@@ -45,6 +45,11 @@ public class AccoutBalanceServiceImpl implements AccountBalanceService{
     @Override
     public void deleteAccountBalance(Long accountBalanceId) {
         accountBalanceRepository.deleteById(accountBalanceId);
+    }
+
+    @Override
+    public List<AccountBalance> getAccountBalancesByAccount(Account acount) {
+        return accountBalanceRepository.findAccountBalanceByAccount(acount);
     }
     
 }

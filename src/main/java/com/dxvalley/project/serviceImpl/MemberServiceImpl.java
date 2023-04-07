@@ -52,5 +52,10 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> getMemberByPrCooperative(PrCooperative prCooperative) {
        return memberRepository.findMemberByPrCooperative(prCooperative);
     }
+
+    @Override
+    public List<Member> getMembersByUnionAndGender(Unions union, String geneder) {
+        return memberRepository.findMemberByUnionAndGender(union, geneder);
+    }
     
 }

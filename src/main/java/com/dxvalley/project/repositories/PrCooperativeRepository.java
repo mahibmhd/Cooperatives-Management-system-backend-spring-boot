@@ -12,5 +12,6 @@ public interface PrCooperativeRepository extends JpaRepository<PrCooperative, Lo
     PrCooperative findPrCooperativeByPrCooperativeId (Long prCooperative_Id);
     PrCooperative findPrCooperativeByName(String name);
     List<PrCooperative> findPrCooperativeByUnion(Unions union);
+    List<PrCooperative> findPrCooperativeByUnionAndIsActive(Unions union,Boolean isActive);
     
 }

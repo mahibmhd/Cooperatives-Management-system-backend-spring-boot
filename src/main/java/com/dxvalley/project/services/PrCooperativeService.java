@@ -11,6 +11,7 @@ public interface PrCooperativeService {
     List<PrCooperative> getPrCooperative ();
     PrCooperative getPrCooperativeById (Long prCooperativeId);
     List<PrCooperative> getPrCooperativeByUnion(Unions union);
+    List<PrCooperative> getPrCooperativeByUnionAndIsActive(Unions union,Boolean isActive);
     PrCooperative getPrCooperativeByName(String name);
     void deletePrCooperative(Long prCooperativeId);
 

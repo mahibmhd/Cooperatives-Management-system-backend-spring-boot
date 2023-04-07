@@ -12,6 +12,7 @@ public interface MemberService {
     List<Member> getMembers ();
     Member getMemberById(Long memberId);
     List<Member> getMembersByUnion(Unions union);
+    List<Member> getMembersByUnionAndGender(Unions union,String geneder);
     List<Member> getMemberByPrCooperative(PrCooperative prCooperative);
     //Member getTypeByName(String typeName);
     void deleteMember( Long memberId);

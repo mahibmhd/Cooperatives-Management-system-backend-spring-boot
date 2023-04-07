@@ -52,6 +52,11 @@ public class PrCooperativeServiceImpl implements PrCooperativeService{
       return prCooperativeRepository.findPrCooperativeByUnion(union);
    }
 
+   @Override
+   public List<PrCooperative> getPrCooperativeByUnionAndIsActive(Unions union, Boolean isActive) {
+     return prCooperativeRepository.findPrCooperativeByUnionAndIsActive(union, isActive);
+   }
+
     
     
 }
