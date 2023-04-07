@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.TotalCapital;
+import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.TotalCapitalService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,9 @@ import lombok.RequiredArgsConstructor;
 public class TotalCapitalController {
     @Autowired
     private final TotalCapitalService totalCapitalService;
+    private final PrCooperativeService prCooperrativeService;
+
+
     @GetMapping("/totalCapitals")
     List<TotalCapital> getTotalCapitals() {
         return this.totalCapitalService.getTotalCapitals();
@@ -34,6 +39,13 @@ public class TotalCapitalController {
     TotalCapital getTotalCapital(@PathVariable Long totalCapitalId) {
         return totalCapitalService.getTotalCapitalById(totalCapitalId);
     }
+
+    @GetMapping("/prCooperative/{prCooperativeId}")
+    List<TotalCapital> getTotalCapitalByPrCooperativeId(@PathVariable Long prCooperativeId)  {
+    PrCooperative prCooperative =prCooperrativeService.getPrCooperativeById(prCooperativeId);
+    return totalCapitalService.getTotalCapitalByPrCooperative(prCooperative);
+    }
+
 
     @PostMapping("/add")
     public ResponseEntity<CreateResponse> addTotalCapital(@RequestBody TotalCapital totalCapital) {
@@ -49,6 +61,7 @@ public class TotalCapitalController {
         totalCapital.setDateGenerated(tempTotalCapital.getDateGenerated());
         totalCapital.setTotalCapitalValue(tempTotalCapital.getTotalCapitalValue());
         totalCapital.setPrCooperative(tempTotalCapital.getPrCooperative());
+        
         return totalCapitalService.editTotalCapital(totalCapital);
     }
 

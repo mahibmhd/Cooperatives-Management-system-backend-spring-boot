@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.TotalCapital;
 import com.dxvalley.project.repositories.TotalCapitalRepository;
 import com.dxvalley.project.services.TotalCapitalService;
@@ -40,6 +41,14 @@ public class TotalCapitalServiceImpl implements TotalCapitalService {
     public void deleteTotalCapital(Long totalCapitalId) {
         totalCapitalRepository.deleteById(totalCapitalId);
     }
+
+   @Override
+   public List<TotalCapital> getTotalCapitalByPrCooperative(PrCooperative prCooperative) {
+      return totalCapitalRepository.findTotalCapitalByPrCooperative(prCooperative);
+   }
+
+  
+
 
     
     
