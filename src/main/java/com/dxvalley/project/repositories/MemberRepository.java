@@ -12,5 +12,6 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
     Member findMemberByMemberId(Long memberId);
     List<Member> findMemberByUnion(Unions union);
     List<Member> findMemberByUnionAndGender(Unions union,String geneder);
+    List<Member> findMemberByPrCooperativeAndGender(PrCooperative prCooperative,String gender);
     List<Member> findMemberByPrCooperative(PrCooperative prCooperative);
 }
