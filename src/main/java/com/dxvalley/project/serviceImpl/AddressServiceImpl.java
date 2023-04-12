@@ -40,15 +40,15 @@ public class AddressServiceImpl implements AddressService {
         return addressRepository.findByAddressId(addressId);
     }
 
-    @Override
-    public List<Address> getAddressByUnion(Unions union) {
-      return addressRepository.findAddressByUnion(union);
-    }
+    // @Override
+    // public List<Address> getAddressByUnion(Unions union) {
+    //   return addressRepository.findAddressByUnion(union);
+    // }
 
-    @Override
-    public List<Address> getAddressByPrCooperative(PrCooperative prCooperative) {
-       return addressRepository.findAddressByPrCooperative(prCooperative);
-    }
+    // @Override
+    // public List<Address> getAddressByPrCooperative(PrCooperative prCooperative) {
+    //    return addressRepository.findAddressByPrCooperative(prCooperative);
+    // }
 
     @Override
     public Address getAddressByPhoneNumber(String phoneNumber) {

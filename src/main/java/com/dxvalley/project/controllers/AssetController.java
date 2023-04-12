@@ -79,6 +79,7 @@ return assetService.getAssetByPrCooperative(prCooperative);
     asset.setAssetName(tempAsset.getAssetName());
     asset.setValue(tempAsset.getValue());
     asset.setType(tempAsset.getType());
+    asset.setDateGenerated(tempAsset.getDateGenerated());
     asset.setPrCooperative(tempAsset.getPrCooperative());
     asset.setUnion(tempAsset.getUnion());
     return assetService.editAsset(asset);
