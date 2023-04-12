@@ -1,4 +1,8 @@
 package com.dxvalley.project.models;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +24,9 @@ public class Commodity {
     private Long commodityId;
     private String commodityName;
     private String type;
+    @JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
+    @Column(name="date_generated")
+    private String dateGenerated;
 
     //commodity union
     @ManyToOne(fetch = FetchType.EAGER)

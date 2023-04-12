@@ -66,6 +66,7 @@ public class CommodityController {
         Commodity commodity = this.commodityService.getCommodityById(commodityId);
        commodity.setCommodityName(tempCommodity.getCommodityName());
        commodity.setPrCooperative(tempCommodity.getPrCooperative());
+       commodity.setDateGenerated(tempCommodity.getDateGenerated());
        commodity.setUnion(tempCommodity.getUnion());
        commodity.setType(tempCommodity.getType());
         return commodityService.editCommodity(commodity);
