@@ -1,4 +1,5 @@
 package com.dxvalley.project.models;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ public class Commodity {
     private Long commodityId;
     private String commodityName;
     private String type;
+    private Double CommodityValue;
 
     //commodity union
     @ManyToOne(fetch = FetchType.EAGER)
@@ -27,7 +29,7 @@ public class Commodity {
 	private Unions union;
 
      //commodity union
-     @ManyToOne(fetch = FetchType.EAGER)
+     @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
      @JoinColumn(name = "prcooperative_id")
      private PrCooperative prCooperative;
 }

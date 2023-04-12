@@ -65,6 +65,7 @@ public class CommodityController {
     Commodity editMember(@RequestBody Commodity tempCommodity, @PathVariable Long commodityId) {
         Commodity commodity = this.commodityService.getCommodityById(commodityId);
        commodity.setCommodityName(tempCommodity.getCommodityName());
+       commodity.setCommodityValue(tempCommodity.getCommodityValue()); 
        commodity.setPrCooperative(tempCommodity.getPrCooperative());
        commodity.setUnion(tempCommodity.getUnion());
        commodity.setType(tempCommodity.getType());
