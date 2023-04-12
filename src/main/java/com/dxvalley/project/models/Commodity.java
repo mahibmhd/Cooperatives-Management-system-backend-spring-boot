@@ -25,6 +25,7 @@ public class Commodity {
     private Long commodityId;
     private String commodityName;
     private String type;
+    private Double commodityValue;
     @JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
     @Column(name="date_generated")
     private String dateGenerated;
