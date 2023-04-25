@@ -3,7 +3,6 @@ package com.dxvalley.project.controllers;
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,12 +147,12 @@ public class UserController {
       List<Users> filteredUsers = users.stream()
               .filter(u -> u.getUserId().equals(userId))
               .collect(Collectors.toList());
-      List<String> firstNames = new ArrayList<>();
+      List<String> user = new ArrayList<>();
       filteredUsers.forEach(u -> {
-        firstNames.add(u.getEmail());
-        firstNames.add(u.getFullName());
-        firstNames.add(u.getUsername());});
-      return firstNames;
+        user.add(u.getEmail());
+        user.add(u.getFullName());
+        user.add(u.getUsername());});
+      return user;
   }
 
   @GetMapping("/userId")
