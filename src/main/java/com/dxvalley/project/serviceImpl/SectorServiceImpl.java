@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.dxvalley.project.models.Sector;
 import com.dxvalley.project.repositories.SectorRepositories;
 import com.dxvalley.project.services.SectorService;
-
 import lombok.RequiredArgsConstructor;
 
 @Service

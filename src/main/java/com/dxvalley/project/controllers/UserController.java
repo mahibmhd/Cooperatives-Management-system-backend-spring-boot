@@ -1,8 +1,12 @@
 package com.dxvalley.project.controllers;
 
 import java.nio.file.AccessDeniedException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,10 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.dxvalley.project.models.Users;
 import com.dxvalley.project.repositories.RoleRepository;
 import com.dxvalley.project.repositories.UserRepository;
+import com.dxvalley.project.serviceImpl.UsersServiceImpl;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -29,6 +36,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 public class UserController {
+  @Autowired
+  private UsersServiceImpl usersServiceImpl;
   private final UserRepository userRepository;
   private final RoleRepository roleRepo;
   private final PasswordEncoder passwordEncoder;
@@ -128,6 +137,35 @@ public class UserController {
     createUserResponse response = new createUserResponse("success", "user created successfully");
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
+
+
+  
+
+
+  @GetMapping("/search")
+  public List<String> getUsers(@RequestParam Long userId) {
+    List<Users> users = usersServiceImpl.getAllUsers();
+      List<Users> filteredUsers = users.stream()
+              .filter(u -> u.getUserId().equals(userId))
+              .collect(Collectors.toList());
+      List<String> firstNames = new ArrayList<>();
+      filteredUsers.forEach(u -> {
+        firstNames.add(u.getEmail());
+        firstNames.add(u.getFullName());
+        firstNames.add(u.getUsername());});
+      return firstNames;
+  }
+
+  @GetMapping("/userId")
+  public List<Users> getUsersByUserId(@RequestParam Long userId) {
+      List<Users> users = usersServiceImpl.getAllUsers();
+      return users.stream()
+              .filter(u -> u.getUserId().equals(userId)) 
+              .collect(Collectors.toList());         
+  }
+
+
+
 
   @PutMapping("/changePin/{phoneNumber}")
   public ResponseEntity<pinchangeResponse> pinChange(@RequestBody Users tempUser,
