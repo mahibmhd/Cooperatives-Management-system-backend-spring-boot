@@ -26,6 +26,7 @@ import com.dxvalley.project.models.PaidUpShare;
 import com.dxvalley.project.models.PaidUpShareDto;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.PrCooperativesExportData;
+import com.dxvalley.project.models.PrPerformanceReportDTO;
 import com.dxvalley.project.models.TotalCapital;
 import com.dxvalley.project.models.TotalCapitalDto;
 import com.dxvalley.project.services.AccountBalanceService;
@@ -190,6 +191,52 @@ import com.dxvalley.project.services.TotalCapitalService;
         return prCooperativesExportDatas;
       }
     
+      @GetMapping("/prPerformanceReport")
+      List<PrPerformanceReportDTO> getPrPerformanceReport() {
+        List<PrPerformanceReportDTO> prPerformanceReportDTOs= new ArrayList<PrPerformanceReportDTO>();
+        List<PrCooperative> prCooperatives=prCooperativeService.getPrCooperative(); 
+        prCooperatives.stream().forEach(pr->{
+            PrPerformanceReportDTO prPerformanceReportDTO= new PrPerformanceReportDTO();
+            prPerformanceReportDTO.setPrName(pr.getName());
+            prPerformanceReportDTO.setSector(pr.getSector().getName());
+            prPerformanceReportDTO.setType(pr.getType().getTypeName());
+            prPerformanceReportDTO.setRegion(pr.getAddress().getRegion());
+            prPerformanceReportDTO.setZone(pr.getAddress().getZone());
+            List<Account> accounts=accountService.getAccountByPrCooperative(pr);
+            List<AccountInfo> accountInfos= new ArrayList<AccountInfo>();
+            accounts.stream().forEach(y->{
+                AccountInfo accountInfo= new AccountInfo();
+                accountInfo.setAccountNumber(y.getAccountNumber());
+                accountInfo.setBranch(y.getBranch());
+                accountInfo.setDistrict(y.getDistrict());
+                List<AccountBalance> accountBalances=accountBalanceService.getAccountBalancesByAccount(y);
+                accountInfo.setAccountBalances(accountBalances);
+                accountInfos.add(accountInfo);
+            });
+            prPerformanceReportDTO.setAccountInfos(accountInfos);
+            List<PaidUpShare> paidUpShares=paidUpShareService.getPaidUpShareByPrCooperative(pr);
+            List<PaidUpShareDto> paidUpShareDtos= new ArrayList<PaidUpShareDto>();
+            paidUpShares.stream().forEach(p->{
+                PaidUpShareDto paidUpShareDto= new PaidUpShareDto();
+                paidUpShareDto.setPaidUpValue(p.getPaidUpValue());
+                paidUpShareDto.setDateGenerated(p.getDateGenerated());
+                paidUpShareDtos.add(paidUpShareDto);
+            });
+            prPerformanceReportDTO.setPaidUpShares(paidUpShareDtos);
+            List<OsLoan> osLoans=osLoanService.getOsLoanByPrCooperative(pr);
+            List<OsLoanDto> osLoanDtos= new ArrayList<OsLoanDto>();
+            osLoans.stream().forEach(os->{
+                OsLoanDto osLoanDto= new OsLoanDto();
+                osLoanDto.setOsLoanValue(os.getOsLoanValue());
+                osLoanDto.setDateGenerated(os.getDateGenerated());
+                osLoanDtos.add(osLoanDto);
+            });
+            prPerformanceReportDTO.setOsLoans(osLoanDtos);
+            prPerformanceReportDTOs.add(prPerformanceReportDTO);
+        });
+        return prPerformanceReportDTOs;
+      }
+
 }
     
 
