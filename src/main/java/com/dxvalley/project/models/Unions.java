@@ -28,6 +28,7 @@ public class Unions {
     private String dateOfEstablishmnet;
     private Double shareCapitalUponEstablishmnet;
     private Boolean isActive;
+    private String licensingOrgan;
 
     //union address
     @OneToOne(cascade = CascadeType.ALL)

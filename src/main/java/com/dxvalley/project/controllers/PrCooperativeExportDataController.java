@@ -273,7 +273,6 @@ import com.dxvalley.project.services.TotalCapitalService;
                   }
               });
               prCooperativesReportData.setNo_of_Total_Establishing_Member(no_of_Total_Establishing_Member);
-              System.out.println(pr.getShareCapitalUponEstablishmnet());
               prCooperativesReportData.setShareCapitalUponEstablishmnet(pr.getShareCapitalUponEstablishmnet());
 
                 prCooperativesReportDatas.add(prCooperativesReportData);
