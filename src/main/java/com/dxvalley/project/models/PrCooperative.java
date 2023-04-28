@@ -28,6 +28,7 @@ public class PrCooperative {
     private String dateOfEstablishmnet;
     private Double shareCapitalUponEstablishmnet;
     private Boolean isActive;
+    private String licensingOrgan;
 
      //prCooperative address
      @OneToOne(cascade = CascadeType.ALL)

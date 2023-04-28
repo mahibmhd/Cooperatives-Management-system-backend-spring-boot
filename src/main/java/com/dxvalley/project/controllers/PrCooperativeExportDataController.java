@@ -26,6 +26,7 @@ import com.dxvalley.project.models.PaidUpShare;
 import com.dxvalley.project.models.PaidUpShareDto;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.PrCooperativesExportData;
+import com.dxvalley.project.models.PrCooperativesReportData;
 import com.dxvalley.project.models.PrPerformanceReportDTO;
 import com.dxvalley.project.models.TotalCapital;
 import com.dxvalley.project.models.TotalCapitalDto;
@@ -236,6 +237,49 @@ import com.dxvalley.project.services.TotalCapitalService;
         });
         return prPerformanceReportDTOs;
       }
+
+      @GetMapping("/getprCooperativesReport")
+      List<PrCooperativesReportData> getPrCooperativesReportData() {
+          List<PrCooperativesReportData> prCooperativesReportDatas= new ArrayList<PrCooperativesReportData>();
+          List<PrCooperative> prCooperatives=prCooperativeService.getPrCooperative();  
+          prCooperatives.stream().forEach(pr->{
+              PrCooperativesReportData prCooperativesReportData= new PrCooperativesReportData();
+              prCooperativesReportData.setPrCooperativeName(pr.getName());
+              prCooperativesReportData.setYearOfStablishment(pr.getDateOfEstablishmnet());
+              prCooperativesReportData.setLicensingOrgan(pr.getLicensingOrgan());
+              List<Member> maleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "MALE"); 
+              List<Member> femaleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "FEMALE");
+              List<Member> totalMembers=memberService.getMemberByPrCooperative(pr);
+              no_of_Male_Establishing_Member=0;
+              maleMembers.stream().forEach(z->{
+                  if(z.getIsFounder()==true){
+                      no_of_Male_Establishing_Member++;
+                  }
+              });
+              prCooperativesReportData.setNo_of_Male_Establishing_Member(no_of_Male_Establishing_Member);
+      
+              no_of_Female_Establishing_Member=0;
+              femaleMembers.stream().forEach(a->{
+                  if(a.getIsFounder()==true)
+                  {
+                      no_of_Female_Establishing_Member++;
+                  }
+              });
+              prCooperativesReportData.setNo_of_Female_Establishing_Member(no_of_Female_Establishing_Member);
+              no_of_Total_Establishing_Member=0;
+              totalMembers.stream().forEach(b->{
+                  if(b.getIsFounder()==true){
+                      no_of_Total_Establishing_Member++;
+                  }
+              });
+              prCooperativesReportData.setNo_of_Total_Establishing_Member(no_of_Total_Establishing_Member);
+              System.out.println(pr.getShareCapitalUponEstablishmnet());
+              prCooperativesReportData.setShareCapitalUponEstablishmnet(pr.getShareCapitalUponEstablishmnet());
+
+                prCooperativesReportDatas.add(prCooperativesReportData);
+          });
+          return prCooperativesReportDatas;
+        }
 
 }
     

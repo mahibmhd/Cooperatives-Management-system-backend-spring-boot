@@ -57,7 +57,7 @@ public class UserController {
     return userRepository.findByUsername((String) auth.getPrincipal()).getUsername().equals(userName);
   }
 
-  // @GetMapping("/getUsers")
+  // @GetMapping("/getuserServiceImpl")
   // List<Users> getUsers() {
   //   if (isSysAdmin()) {
   //     return this.userRepository.findAll(Sort.by("username"));
