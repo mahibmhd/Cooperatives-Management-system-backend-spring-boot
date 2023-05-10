@@ -248,16 +248,13 @@ import com.dxvalley.project.services.TotalCapitalService;
               prCooperativesReportData.setYearOfStablishment(pr.getDateOfEstablishmnet());
               prCooperativesReportData.setLicensingOrgan(pr.getLicensingOrgan());
               List<Member> maleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "MALE"); 
-              List<Member> femaleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "FEMALE");
-              List<Member> totalMembers=memberService.getMemberByPrCooperative(pr);
               no_of_Male_Establishing_Member=0;
               maleMembers.stream().forEach(z->{
                   if(z.getIsFounder()==true){
                       no_of_Male_Establishing_Member++;
                   }
               });
-              prCooperativesReportData.setNo_of_Male_Establishing_Member(no_of_Male_Establishing_Member);
-      
+              List<Member> femaleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "FEMALE");
               no_of_Female_Establishing_Member=0;
               femaleMembers.stream().forEach(a->{
                   if(a.getIsFounder()==true)
@@ -265,6 +262,10 @@ import com.dxvalley.project.services.TotalCapitalService;
                       no_of_Female_Establishing_Member++;
                   }
               });
+              List<Member> totalMembers=memberService.getMemberByPrCooperative(pr);
+              prCooperativesReportData.setNo_of_Male_Establishing_Member(no_of_Male_Establishing_Member);
+      
+            
               prCooperativesReportData.setNo_of_Female_Establishing_Member(no_of_Female_Establishing_Member);
               no_of_Total_Establishing_Member=0;
               totalMembers.stream().forEach(b->{

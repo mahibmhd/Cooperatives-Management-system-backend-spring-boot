@@ -74,6 +74,7 @@ public class PrCooperativeController {
     prCooperative.setIsActive(tempPrCooperative.getIsActive());
     prCooperative.setAddress(tempPrCooperative.getAddress());
     prCooperative.setType(tempPrCooperative.getType());
+    prCooperative.setLicensingOrgan(tempPrCooperative.getLicensingOrgan());
     prCooperative.setSector(tempPrCooperative.getSector());
     prCooperative.setUnion(tempPrCooperative.getUnion());
     return prCooperativeService.editPrCooperative(prCooperative);
