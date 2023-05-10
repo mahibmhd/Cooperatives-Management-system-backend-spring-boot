@@ -36,7 +36,7 @@ public class Commodity {
 	private Unions union;
 
      //commodity union
-     @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+     @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn(name = "prcooperative_id")
      private PrCooperative prCooperative;
 }
