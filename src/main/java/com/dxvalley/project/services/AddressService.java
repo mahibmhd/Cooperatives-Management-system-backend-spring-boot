@@ -3,8 +3,7 @@ package com.dxvalley.project.services;
 import java.util.List;
 
 import com.dxvalley.project.models.Address;
-import com.dxvalley.project.models.PrCooperative;
-import com.dxvalley.project.models.Unions;
+
 
 public interface AddressService {
     

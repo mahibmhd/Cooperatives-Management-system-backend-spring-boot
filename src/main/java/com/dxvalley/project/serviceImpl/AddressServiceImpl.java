@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.Address;
-import com.dxvalley.project.models.PrCooperative;
-import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.AddressRepository;
 import com.dxvalley.project.services.AddressService;
 
