@@ -27,6 +27,7 @@ import com.dxvalley.project.models.PaidUpShareDto;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.models.UnionsExportData;
+import com.dxvalley.project.models.UnionsReportData;
 import com.dxvalley.project.services.AccountBalanceService;
 import com.dxvalley.project.services.AccountService;
 import com.dxvalley.project.services.AnnualTurnOverService;
@@ -43,7 +44,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/unionExpoert")
+@RequestMapping("/api/unionExport")
 public class UnionsExpportDataController {
     @Autowired
     private final UnionService unionService;
@@ -180,5 +181,29 @@ public class UnionsExpportDataController {
     });
     return unionsExportDatas;
   }
+
+  @GetMapping("/getUnionsReport")
+  List<UnionsReportData> getUnioons() {
+    List<UnionsReportData> unionsReportDatas= new ArrayList<UnionsReportData>();
+    List<Unions> unions=unionService.getUnion();
+    unions.stream().forEach(m->{
+        UnionsReportData unionsReportData= new UnionsReportData();
+        unionsReportData.setUnionName(m.getName());
+        unionsReportData.setDateOfEstablishmnet(m.getDateOfEstablishmnet());
+        unionsReportData.setLicensingOrgan(m.getLicensingOrgan());
+        List<Member> totalMembers=memberService.getMembersByUnion(m);
+       no_of_Total_Stablishing_Member=0;
+       totalMembers.stream().forEach(b->{
+           if(b.getIsFounder()==true){
+               no_of_Total_Stablishing_Member++;
+           }
+       });
+       unionsReportData.setNo_of_Total_Stablishing_Member(no_of_Total_Stablishing_Member);
+       unionsReportData.setShareCapitalUponEstablishmnet(m.getShareCapitalUponEstablishmnet());
+       unionsReportDatas.add(unionsReportData);
+    });
+    return unionsReportDatas;
+}
+
 
 }

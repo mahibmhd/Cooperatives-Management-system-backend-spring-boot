@@ -63,6 +63,7 @@ public class UnionController {
     union.setShareCapitalUponEstablishmnet(tempUnion.getShareCapitalUponEstablishmnet());
     union.setIsActive(tempUnion.getIsActive());
     union.setAddress(tempUnion.getAddress());
+    union.setLicensingOrgan(tempUnion.getLicensingOrgan());
     union.setSector(tempUnion.getSector());
     union.setType(tempUnion.getType());
     return unionService.editUnion(union);

@@ -1,0 +1,17 @@
+package com.dxvalley.project.models;
+
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class PrCooperativesReportData {
+
+    private String prCooperativeName;
+    private String yearOfStablishment;
+    private Integer no_of_Male_Establishing_Member;
+    private Integer no_of_Female_Establishing_Member;
+    private Integer no_of_Total_Establishing_Member;
+    private Double shareCapitalUponEstablishmnet;
+    private String licensingOrgan;
+}
