@@ -166,8 +166,8 @@ public class UserController {
 
 
 
-  @PutMapping("/changePin/{phoneNumber}")
-  public ResponseEntity<pinchangeResponse> pinChange(@RequestBody Users tempUser,
+  @PutMapping("/passwordReset/{phoneNumber}")
+  public ResponseEntity<pinchangeResponse> passwordReset(@RequestBody Users tempUser,
       @PathVariable String phoneNumber) {
     Users user = userRepository.findByUsername(phoneNumber);
     // edit(tempUser,user);
@@ -178,6 +178,53 @@ public class UserController {
     // .setPassword(null);
     pinchangeResponse response = new pinchangeResponse("success");
     return new ResponseEntity<>(response, HttpStatus.OK);
+
+  }
+  
+  @PutMapping("/editUser/{phoneNumber}")
+  public ResponseEntity<pinchangeResponse> editUser(@RequestBody Users tempUser,
+      @PathVariable String phoneNumber) {
+    Users user = userRepository.findByUsername(phoneNumber);
+    // edit(tempUser,user);
+    // user.setUsername(tempUser.getUsername());
+
+    user.setFullName(tempUser.getFullName());
+    user.getAddress().setEmail(tempUser.getAddress().getEmail());
+    user.getAddress().setRegion(tempUser.getAddress().getRegion());
+    user.getAddress().setZone(tempUser.getAddress().getZone());
+    user.getAddress().setWoreda(tempUser.getAddress().getWoreda());
+    user.getAddress().setTown(tempUser.getAddress().getTown());
+    user.getAddress().setKebele(tempUser.getAddress().getKebele());
+    user.getAddress().setPhoneNumber(tempUser.getAddress().getPhoneNumber());
+    userRepository.save(user);
+    // .setPassword(null);
+    pinchangeResponse response = new pinchangeResponse("success");
+    return new ResponseEntity<>(response, HttpStatus.OK);
+
+  }
+  
+  @PutMapping("/changePassword/{phoneNumber}/{password}")
+  public ResponseEntity<pinchangeResponse> ChangePassword(@RequestBody Users tempUser,
+      @PathVariable String phoneNumber,@PathVariable String password) {
+    Users user = userRepository.findByUsername(phoneNumber);
+    // edit(tempUser,user);
+    // user.setUsername(tempUser.getUsername());
+    System.out.println(user.getPassword());
+    System.out.println(password);
+    if(passwordEncoder.matches(password, user.getPassword()))
+    {
+     
+      user.setPassword(passwordEncoder.encode(tempUser.getPassword()));
+    userRepository.save(user);
+    // .setPassword(null);
+    pinchangeResponse response = new pinchangeResponse("success");
+    return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    else
+    {
+      pinchangeResponse response = new pinchangeResponse("incorrect old password");
+      return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST); 
+    }
 
   }
 

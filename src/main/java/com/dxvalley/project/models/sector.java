@@ -16,4 +16,5 @@ public class Sector {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long sectorId;
     private String name;
+    private String sectorDescription;
 }
