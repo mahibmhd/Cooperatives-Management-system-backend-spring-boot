@@ -63,6 +63,7 @@ public class SectorController {
   Sector editSector(@RequestBody Sector tempSector, @PathVariable Long sectorId) {
     Sector sector = this.sectorService.getSectorById(sectorId);
     sector.setName(tempSector.getName());
+    sector.setSectorDescription(tempSector.getSectorDescription());
     return sectorService.editsector(sector);
   }
 
