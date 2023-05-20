@@ -21,6 +21,7 @@ public class PrCooperativesExportData {
         private Integer no_of_Male_Establishing_Member;
         private Integer no_of_Female_Establishing_Member;
         private Integer no_of_Total_Establishing_Member;
+        private Integer jobOpportunityCreated;
         private List<AnnualSellDto> annualSells;
         private List<TotalCapitalDto> totalCapitals;
         private List<AssetDto> assets;

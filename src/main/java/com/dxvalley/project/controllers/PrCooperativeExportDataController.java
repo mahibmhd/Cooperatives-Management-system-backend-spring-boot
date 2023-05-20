@@ -247,6 +247,10 @@ import com.dxvalley.project.services.TotalCapitalService;
               prCooperativesReportData.setPrCooperativeName(pr.getName());
               prCooperativesReportData.setYearOfStablishment(pr.getDateOfEstablishmnet());
               prCooperativesReportData.setLicensingOrgan(pr.getLicensingOrgan());
+              prCooperativesReportData.setNo_Of_MaleMembers(pr.getNo_Of_MaleMembers());
+              prCooperativesReportData.setNo_Of_FemaleMembers(pr.getNo_Of_FemaleMembers());
+              prCooperativesReportData.setFemaleMembersUpOnEstablishement(pr.getFemaleMembersUpOnEstablishement());
+              prCooperativesReportData.setMaleMembersUpOnEstablishement(pr.getMaleMembersUpOnEstablishement());
               List<Member> maleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "MALE"); 
               no_of_Male_Establishing_Member=0;
               maleMembers.stream().forEach(z->{
