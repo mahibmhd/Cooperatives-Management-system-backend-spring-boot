@@ -190,7 +190,7 @@ public class UnionsExpportDataController {
         UnionsReportData unionsReportData= new UnionsReportData();
         unionsReportData.setUnionName(m.getName());
         unionsReportData.setDateOfEstablishmnet(m.getDateOfEstablishmnet());
-        unionsReportData.setLicensingOrgan(m.getLicensingOrgan());
+       // unionsReportData.setLicensingOrgan(m.getLicensingOrgan());
         List<Member> totalMembers=memberService.getMembersByUnion(m);
        no_of_Total_Stablishing_Member=0;
        totalMembers.stream().forEach(b->{

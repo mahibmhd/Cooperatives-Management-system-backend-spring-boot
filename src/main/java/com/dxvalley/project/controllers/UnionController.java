@@ -63,9 +63,10 @@ public class UnionController {
     union.setShareCapitalUponEstablishmnet(tempUnion.getShareCapitalUponEstablishmnet());
     union.setIsActive(tempUnion.getIsActive());
     union.setAddress(tempUnion.getAddress());
-    union.setLicensingOrgan(tempUnion.getLicensingOrgan());
+    //union.setLicensingOrgan(tempUnion.getLicensingOrgan());
     union.setSector(tempUnion.getSector());
     union.setType(tempUnion.getType());
+    union.setFederations(tempUnion.getFederations());
     return unionService.editUnion(union);
   }
 }

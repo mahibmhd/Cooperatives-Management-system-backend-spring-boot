@@ -74,7 +74,7 @@ public class PrCooperativeController {
     prCooperative.setIsActive(tempPrCooperative.getIsActive());
     prCooperative.setAddress(tempPrCooperative.getAddress());
     prCooperative.setType(tempPrCooperative.getType());
-    prCooperative.setLicensingOrgan(tempPrCooperative.getLicensingOrgan());
+   // prCooperative.setLicensingOrgan(tempPrCooperative.getLicensingOrgan());
     prCooperative.setNo_Of_MaleMembers(tempPrCooperative.getNo_Of_MaleMembers());
     prCooperative.setNo_Of_FemaleMembers(tempPrCooperative.getNo_Of_FemaleMembers());
     prCooperative.setFemaleMembersUpOnEstablishement(tempPrCooperative.getFemaleMembersUpOnEstablishement());
@@ -83,6 +83,7 @@ public class PrCooperativeController {
     
     prCooperative.setSector(tempPrCooperative.getSector());
     prCooperative.setUnion(tempPrCooperative.getUnion());
+    prCooperative.setFederations(tempPrCooperative.getFederations());
     return prCooperativeService.editPrCooperative(prCooperative);
   }
 

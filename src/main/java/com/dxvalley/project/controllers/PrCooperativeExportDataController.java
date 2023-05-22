@@ -246,7 +246,7 @@ import com.dxvalley.project.services.TotalCapitalService;
               PrCooperativesReportData prCooperativesReportData= new PrCooperativesReportData();
               prCooperativesReportData.setPrCooperativeName(pr.getName());
               prCooperativesReportData.setYearOfStablishment(pr.getDateOfEstablishmnet());
-              prCooperativesReportData.setLicensingOrgan(pr.getLicensingOrgan());
+             // prCooperativesReportData.setLicensingOrgan(pr.getLicensingOrgan());
               prCooperativesReportData.setNo_Of_MaleMembers(pr.getNo_Of_MaleMembers());
               prCooperativesReportData.setNo_Of_FemaleMembers(pr.getNo_Of_FemaleMembers());
               prCooperativesReportData.setFemaleMembersUpOnEstablishement(pr.getFemaleMembersUpOnEstablishement());
