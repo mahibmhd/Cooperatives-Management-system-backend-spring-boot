@@ -251,6 +251,7 @@ import com.dxvalley.project.services.TotalCapitalService;
               prCooperativesReportData.setNo_Of_FemaleMembers(pr.getNo_Of_FemaleMembers());
               prCooperativesReportData.setFemaleMembersUpOnEstablishement(pr.getFemaleMembersUpOnEstablishement());
               prCooperativesReportData.setMaleMembersUpOnEstablishement(pr.getMaleMembersUpOnEstablishement());
+              prCooperativesReportData.setJobOpportunityCreated(pr.getJobOpportunityCreated());
               List<Member> maleMembers=memberService.getMembersByPrCooperativeAndGender(pr, "MALE"); 
               no_of_Male_Establishing_Member=0;
               maleMembers.stream().forEach(z->{

@@ -79,8 +79,8 @@ public class PrCooperativeController {
     prCooperative.setNo_Of_FemaleMembers(tempPrCooperative.getNo_Of_FemaleMembers());
     prCooperative.setFemaleMembersUpOnEstablishement(tempPrCooperative.getFemaleMembersUpOnEstablishement());
     prCooperative.setMaleMembersUpOnEstablishement(tempPrCooperative.getMaleMembersUpOnEstablishement());
-prCooperative.setJobOpportunityCreated(tempPrCooperative.getJobOpportunityCreated());
-    //prCooperative.setJobOpportunityCreated(tempPrCooperative.getJobOpportunityCreated());
+    prCooperative.setJobOpportunityCreated(tempPrCooperative.getJobOpportunityCreated());
+    
     prCooperative.setSector(tempPrCooperative.getSector());
     prCooperative.setUnion(tempPrCooperative.getUnion());
     return prCooperativeService.editPrCooperative(prCooperative);

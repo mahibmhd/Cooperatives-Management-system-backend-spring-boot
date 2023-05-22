@@ -16,4 +16,5 @@ public class PrCooperativesReportData {
     private Integer no_Of_FemaleMembers;
     private Integer maleMembersUpOnEstablishement;
     private Integer femaleMembersUpOnEstablishement; 
+    private Integer jobOpportunityCreated;
 }

@@ -42,6 +42,9 @@ public class Unions {
     @ManyToOne
     private Sector sector;
 
+    @ManyToOne
+    private Federations federations;
+
 
     
 

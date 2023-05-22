@@ -51,4 +51,7 @@ public class PrCooperative {
      //prCooperative union
      @ManyToOne
      private Unions union;
+
+     @ManyToOne
+     private Federations federations;
 }
