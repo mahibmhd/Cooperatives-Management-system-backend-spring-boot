@@ -40,5 +40,10 @@ public class Federations {
         
         @ManyToOne
         private Sector sector;
+
+        
+  //federations type
+        @ManyToOne
+        private Type type;
     
 }

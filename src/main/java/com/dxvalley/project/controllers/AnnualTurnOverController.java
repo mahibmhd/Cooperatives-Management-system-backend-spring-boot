@@ -62,6 +62,7 @@ public class AnnualTurnOverController {
     annualTurnOver.setAnnualTurnOverValue(tempAnnualTurnOver.getAnnualTurnOverValue());
     annualTurnOver.setDateGenerated(tempAnnualTurnOver.getDateGenerated());
     annualTurnOver.setUnion(tempAnnualTurnOver.getUnion());
+    annualTurnOver.setPrCooperative(tempAnnualTurnOver.getPrCooperative());
     return annualTurnOverService.editAnnualTurnOver(annualTurnOver);
   }
     

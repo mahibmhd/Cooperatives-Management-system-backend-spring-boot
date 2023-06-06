@@ -32,4 +32,8 @@ public class AnnualTurnOver {
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
 	private Unions union;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "prCooperative_Id")
+    private PrCooperative prCooperative;
 }

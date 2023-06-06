@@ -61,6 +61,7 @@ public class FederationController {
     federation.setYearOfEstablishmnet(tempFederation.getYearOfEstablishmnet());
     federation.setShareCapitalUpOnEstablishement(tempFederation.getShareCapitalUpOnEstablishement());
     federation.setSector(tempFederation.getSector());
+    federation.setType(tempFederation.getType());
     return federationService.editFederation(federation);
   }
 

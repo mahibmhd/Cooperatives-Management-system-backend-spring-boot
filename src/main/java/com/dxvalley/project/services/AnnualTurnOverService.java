@@ -3,6 +3,7 @@ package com.dxvalley.project.services;
 import java.util.List;
 
 import com.dxvalley.project.models.AnnualTurnOver;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 
 public interface AnnualTurnOverService {
@@ -12,6 +13,7 @@ public interface AnnualTurnOverService {
     List<AnnualTurnOver> getAnnualTurnOvers ();
     AnnualTurnOver getAnnualTurnOverById(Long annualTurnOverId);
     List<AnnualTurnOver> getAnnualTurnOverByUnion(Unions union);
+    List<AnnualTurnOver> getAnnualTurnOverByPrCooperative(PrCooperative prCooperative);
     void deleteAnnualTurnOver( Long annualTurnOverId);
     
 }
