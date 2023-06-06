@@ -32,7 +32,7 @@ public class AnnualTurnOverController {
     @Autowired
     private final AnnualTurnOverService annualTurnOverService;
     private final UnionService UnionnService;
-    private final PrCooperativeService prCooperativeService;
+    private final PrCooperativeService prCoopperativeService;
 
 
     @GetMapping("/getAnnualTurnOver")
@@ -52,17 +52,16 @@ public class AnnualTurnOverController {
 }
 @GetMapping("/prCooperative/{prCooperativeId}")
 List<AnnualTurnOver> getAnnualTurnOverByPrCooperativeId(@PathVariable long prCooperativeId) {
-  PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
+  PrCooperative prCooperative=prCoopperativeService.getPrCooperativeById(prCooperativeId);
   return annualTurnOverService.getAnnualTurnOverByPrCooperative(prCooperative);
 }
 
   @PostMapping("/add")
-  public ResponseEntity<CreateResponse> addCommodity(@RequestBody AnnualTurnOver annualTurnOver) {
+  public ResponseEntity<CreateResponse> addAnnualTurnOver(@RequestBody AnnualTurnOver annualTurnOver) {
     annualTurnOverService.addAnnualTurnOver(annualTurnOver);
       CreateResponse response = new CreateResponse("success", "AnnualTurnOver created successfully");
       return new ResponseEntity<>(response, HttpStatus.OK);
-
-  }
+}
 
   @PutMapping("/edit/{annualTurnOverId}")
   AnnualTurnOver editAnnualTurnOver(@RequestBody AnnualTurnOver tempAnnualTurnOver, @PathVariable Long annualTurnOverId) {
