@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.AnnualTurnOver;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.AnnualTurnOverService;
+import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,7 @@ public class AnnualTurnOverController {
     @Autowired
     private final AnnualTurnOverService annualTurnOverService;
     private final UnionService UnionnService;
+    private final PrCooperativeService prCooperativeService;
 
 
     @GetMapping("/getAnnualTurnOver")
@@ -46,6 +49,11 @@ public class AnnualTurnOverController {
   List<AnnualTurnOver> getAnnualTurnOverByUnionId(@PathVariable Long unionId)  {
   Unions  union=UnionnService.getUnionById(unionId); 
   return annualTurnOverService.getAnnualTurnOverByUnion(union); 
+}
+@GetMapping("/prCooperative/{prCooperativeId}")
+List<AnnualTurnOver> getAnnualTurnOverByPrCooperativeId(@PathVariable long prCooperativeId) {
+  PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
+  return annualTurnOverService.getAnnualTurnOverByPrCooperative(prCooperative);
 }
 
   @PostMapping("/add")
