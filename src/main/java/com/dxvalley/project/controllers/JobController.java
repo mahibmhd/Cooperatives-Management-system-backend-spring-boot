@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Job;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.JobService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
@@ -33,6 +35,7 @@ public class JobController {
     private final JobService jobService;
     private final UnionService unionnService;
     private final PrCooperativeService prCoopperativeService;
+    private final FederationService federationService;
 
     @GetMapping("/getjobs")
     List<Job> getJob() {
@@ -54,6 +57,12 @@ public class JobController {
 List<Job> getJobByPrCooperativeId(@PathVariable Long prCooperativeId)  {
 PrCooperative prCooperative = prCoopperativeService.getPrCooperativeById(prCooperativeId);
 return jobService.getJobByPrCooperative(prCooperative);
+}
+
+@GetMapping("/getByfederationId/{federationId}")
+List<Job> getJobByFederationId(@PathVariable Long federationId) {
+  Federations federation=federationService.getFederationByFederationId(federationId);
+  return jobService.getJobByFederation(federation);
 }
 
   @PostMapping("/add")
@@ -81,6 +90,7 @@ return jobService.getJobByPrCooperative(prCooperative);
     job.setEmployeeNumber(tempJob.getEmployeeNumber());
     job.setPrCooperative(tempJob.getPrCooperative());
     job.setUnion(tempJob.getUnion());
+    job.setFederation(tempJob.getFederation());
      
     return jobService.editJob(job);
     

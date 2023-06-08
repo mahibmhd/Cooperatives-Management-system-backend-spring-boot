@@ -2,7 +2,6 @@ package com.dxvalley.project.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,7 +24,7 @@ public class Commodity {
     private Long commodityId;
     private String commodityName;
     private String type;
-    private Double commodityValue;
+    //private Double commodityValue;
     @JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
     @Column(name="date_generated")
     private String dateGenerated;
@@ -35,8 +34,12 @@ public class Commodity {
 	@JoinColumn(name = "union_id")
 	private Unions union;
 
-     //commodity union
+     //commodity prCooperative
      @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn(name = "prcooperative_id")
      private PrCooperative prCooperative;
+
+     @ManyToOne(fetch = FetchType.EAGER)
+     @JoinColumn(name = "federation_Id")
+     private Federations federation;
 }

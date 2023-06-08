@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PaidUpShare;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -54,6 +54,11 @@ public class PaidUpShareServiceImpl implements PaidUpShareService {
     @Override
     public List<PaidUpShare> getPaidUpShareByPrCooperative(PrCooperative prCooperative) {
        return paidUpShareRepository.findPaidUpShareByPrCooperative(prCooperative);
+    }
+
+    @Override
+    public List<PaidUpShare> getPaidUpShareByFederation(Federations federation) {
+       return paidUpShareRepository.findPaidUpShareByFederation(federation);
     }
     
 }

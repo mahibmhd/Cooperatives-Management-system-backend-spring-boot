@@ -30,4 +30,8 @@ public class Account {
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_id")
 	private PrCooperative prCooperative;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "federation_id")
+    private Federations federation;
 }

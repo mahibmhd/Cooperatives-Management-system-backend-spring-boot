@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.OsLoan;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.OsLoanService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
@@ -31,6 +33,7 @@ public class OsLoanController {
     private final OsLoanService osLoanService;
     private final UnionService unionService;
     private final PrCooperativeService prCooperativeService;
+    private final FederationService federationService;
 
     @GetMapping("/getosLoans")
     List<OsLoan> getosLoans() {
@@ -46,6 +49,12 @@ public class OsLoanController {
     List<OsLoan> getOsLoanByPrCooperativeId(@PathVariable Long prCooperativeId) {
         PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
         return osLoanService.getOsLoanByPrCooperative(prCooperative);
+    }
+
+    @GetMapping("getByFederationId/{federationId}")
+    List<OsLoan> getOsLoanByFederationId(@PathVariable Long federationId) {
+        Federations federation=federationService.getFederationByFederationId(federationId);
+        return osLoanService.getOsLoanByFederation(federation);
     }
 
     @GetMapping("/{osLoanId}")
@@ -68,6 +77,7 @@ public class OsLoanController {
         osLoan.setOsLoanValue(tempOsLoan.getOsLoanValue());
         osLoan.setPrCooperative(tempOsLoan.getPrCooperative());
         osLoan.setUnion(tempOsLoan.getUnion());
+        osLoan.setFederation(tempOsLoan.getFederation());
 
         return osLoanService.editOsLoan(osLoan);
     }

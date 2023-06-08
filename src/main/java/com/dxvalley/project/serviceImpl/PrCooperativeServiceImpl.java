@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.PrCooperativeRepository;
@@ -57,6 +58,14 @@ public class PrCooperativeServiceImpl implements PrCooperativeService{
      return prCooperativeRepository.findPrCooperativeByUnionAndIsActive(union, isActive);
    }
 
-    
+   @Override
+   public List<PrCooperative> getPrCooperativesByFederationAndIsActive(Federations federation, Boolean isActive) {
+      return prCooperativeRepository.findPrCooperativesByFederationAndIsActive(federation, isActive);
+   }
+
+   @Override
+   public List<PrCooperative> getPrCooperativeByFederation(Federations federation) {
+     return prCooperativeRepository.findPrCooperativesByFederation(federation);
+   }    
     
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.dxvalley.project.models.AnnualTurnOver;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 
@@ -13,5 +14,6 @@ public interface AnnualTurnOverRepository extends JpaRepository<AnnualTurnOver, 
     AnnualTurnOver findAnnualTurnOverByAnnualTurnOverId(Long annualTurnOverId);
     List<AnnualTurnOver> findAnnualTurnOverByUnion(Unions union);
     List<AnnualTurnOver> findAnnualTurnOverByPrCooperative(PrCooperative prCooperative);
+    List<AnnualTurnOver> findAnnualTurnOverByFederation(Federations federation);
     
 }

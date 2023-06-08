@@ -70,6 +70,7 @@ List<AnnualTurnOver> getAnnualTurnOverByPrCooperativeId(@PathVariable long prCoo
     annualTurnOver.setDateGenerated(tempAnnualTurnOver.getDateGenerated());
     annualTurnOver.setUnion(tempAnnualTurnOver.getUnion());
     annualTurnOver.setPrCooperative(tempAnnualTurnOver.getPrCooperative());
+    annualTurnOver.setFederation(tempAnnualTurnOver.getFederation());
     return annualTurnOverService.editAnnualTurnOver(annualTurnOver);
   }
     

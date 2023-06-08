@@ -156,7 +156,7 @@ import com.dxvalley.project.services.TotalCapitalService;
             List<AssetDto> assetDtos= new ArrayList<AssetDto>();
             assets.stream().forEach(as->{
                 AssetDto assetDto= new AssetDto();
-                assetDto.setAssetName(as.getAssetName());
+                //assetDto.setAssetName(as.getAssetName());
                 assetDto.setType(as.getType());
                 assetDto.setValue(as.getValue());
                 assetDtos.add(assetDto);

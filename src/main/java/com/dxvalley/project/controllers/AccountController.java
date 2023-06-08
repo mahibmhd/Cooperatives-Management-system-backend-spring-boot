@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.Account;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.AccountService;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
 
@@ -31,6 +33,7 @@ public class AccountController {
     private final AccountService accountService;
     private final UnionService unionService;
     private final PrCooperativeService prCooperativeService;
+    private final FederationService federationService;
     
     @GetMapping("/getaccounts")
     List<Account> getAccounts() {
@@ -51,6 +54,12 @@ public class AccountController {
     List<Account> getAccountByPrCooperativeId(@PathVariable Long prCooperativeId) {
         PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
         return accountService.getAccountByPrCooperative(prCooperative);
+    }
+
+    @GetMapping("getByFederation/{federationId}")
+    List<Account> getAccountByFederationId(@PathVariable Long federationId) {
+        Federations federation = federationService.getFederationByFederationId(federationId);
+        return accountService.getAccountByFederation(federation);
     }
 
     @PostMapping("/add")
@@ -77,6 +86,7 @@ public class AccountController {
         account.setDistrict(tempAccount.getDistrict());
         account.setPrCooperative(tempAccount.getPrCooperative());
         account.setUnion(tempAccount.getUnion());
+        account.setFederation(tempAccount.getFederation());
         return accountService.editAccount(account);
     }
 

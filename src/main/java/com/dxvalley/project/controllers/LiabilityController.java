@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Liabilty;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.LiabilityService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
@@ -31,6 +33,7 @@ public class LiabilityController {
     private final LiabilityService liabilityService;
     private final UnionService unionService;
     private final PrCooperativeService prCooperativeService;
+    private final FederationService federationService;
 
     @GetMapping("/getLiabilities")
     List<Liabilty> getLiabilities() {
@@ -48,6 +51,13 @@ public class LiabilityController {
         PrCooperative prCooperative=prCooperativeService.getPrCooperativeById(prCooperativeId);
         return liabilityService.getLiabiltyByPrCooperative(prCooperative);
     }
+
+    @GetMapping("getByFederationId/{federationId}")
+    List<Liabilty> getLiabilityByFederationId(@PathVariable Long federationId) {
+        Federations federation=federationService.getFederationByFederationId(federationId);
+        return liabilityService.getLiabilityByFederation(federation);
+    }
+
 
     @GetMapping("/{liabilityId}")
     Liabilty getLiabilty(@PathVariable Long liabilityId) {
@@ -69,6 +79,7 @@ public class LiabilityController {
         liabilty.setLiabilityValue(tempLiabilty.getLiabilityValue());
         liabilty.setPrCooperative(tempLiabilty.getPrCooperative());
         liabilty.setUnion(tempLiabilty.getUnion());
+        liabilty.setFederation(tempLiabilty.getFederation());
 
         return liabilityService.editLiabilty(liabilty);
     }

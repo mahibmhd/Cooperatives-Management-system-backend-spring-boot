@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.Account;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.AccountRepository;
@@ -58,6 +59,11 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public List<Account> getAccountByPrCooperative(PrCooperative prCooperative) {
         return accountRepository.findAccountByPrCooperative(prCooperative);
+    }
+
+    @Override
+    public List<Account> getAccountByFederation(Federations federation) {
+      return accountRepository.findAccountByFederation(federation);
     }
     
 }

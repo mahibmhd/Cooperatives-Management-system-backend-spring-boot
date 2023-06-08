@@ -72,6 +72,7 @@ public class MemberController {
         member.setAddress(tempMember.getAddress());
         member.setUnion(tempMember.getUnion());
         member.setPrCooperative(tempMember.getPrCooperative());
+        member.setFederation(tempMember.getFederation());
 
         return memberService.editMember(member);
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.Commodity;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.CommodityRespository;
@@ -52,5 +53,10 @@ public class CommodityServiceImpl implements CommodityService{
     public List<Commodity> getCommodityByPrCooperative(PrCooperative prCooperative) {
        return commodityRespository.findCommodityByPrCooperative(prCooperative);
     }
+
+   @Override
+   public List<Commodity> getCommodityByFederation(Federations federation) {
+     return commodityRespository.findCommodityByFederation(federation);
+   }
     
 }

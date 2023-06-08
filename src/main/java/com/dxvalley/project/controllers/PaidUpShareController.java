@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PaidUpShare;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.PaidUpShareService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
@@ -32,6 +34,7 @@ public class PaidUpShareController {
     private final PaidUpShareService paidUpShareService;
     private final UnionService UnnionService; 
     private final PrCooperativeService prrCooperativeService;
+    private final FederationService federationService;
     
     @GetMapping("/getPaidUpShares")
     List<PaidUpShare> getPaidUpShare () {
@@ -53,7 +56,15 @@ public class PaidUpShareController {
   List<PaidUpShare> getPaidUpShareByPrCooperativeId(@PathVariable Long prCooperativeId)  {
   PrCooperative prCooperative=prrCooperativeService.getPrCooperativeById(prCooperativeId);
   return paidUpShareService.getPaidUpShareByPrCooperative(prCooperative);
-}
+  }
+
+  @GetMapping("/federation/{federationId}")
+  List<PaidUpShare> getPaidUpShareByFederationId(@PathVariable Long federationId) {
+    Federations federation=federationService.getFederationByFederationId(federationId);
+    return paidUpShareService.getPaidUpShareByFederation(federation);
+
+  }
+
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse> addCommodity(@RequestBody PaidUpShare paidUpShare) {
@@ -70,6 +81,7 @@ public class PaidUpShareController {
     paidUpShare.setDateGenerated(tempPaidUpShare.getDateGenerated());
     paidUpShare.setPrCooperative(tempPaidUpShare.getPrCooperative());
     paidUpShare.setUnion(tempPaidUpShare.getUnion());
+    paidUpShare.setFederation(tempPaidUpShare.getFederation());
     return paidUpShareService.editPaidUpShare(paidUpShare);
   }
 

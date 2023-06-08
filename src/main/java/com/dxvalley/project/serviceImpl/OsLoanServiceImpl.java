@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.OsLoan;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -51,6 +52,11 @@ public class OsLoanServiceImpl implements OsLoanService {
    @Override
    public List<OsLoan> getOsLoanByPrCooperative(PrCooperative prCooperative) {
       return osLoanRepository.findOsLoanByPrCooperative(prCooperative);
+   }
+
+   @Override
+   public List<OsLoan> getOsLoanByFederation(Federations federation) {
+     return osLoanRepository.findOsLoanByFederation(federation);
    }
 
    

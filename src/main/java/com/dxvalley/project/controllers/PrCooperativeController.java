@@ -83,7 +83,7 @@ public class PrCooperativeController {
     
     prCooperative.setSector(tempPrCooperative.getSector());
     prCooperative.setUnion(tempPrCooperative.getUnion());
-    prCooperative.setFederations(tempPrCooperative.getFederations());
+    prCooperative.setFederation(tempPrCooperative.getFederation());
     return prCooperativeService.editPrCooperative(prCooperative);
   }
 

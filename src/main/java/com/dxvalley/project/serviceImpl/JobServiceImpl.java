@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Job;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -61,6 +62,11 @@ public class JobServiceImpl implements JobService {
     public Job getJobByJobTitle(String jobTitle) {
        return jobRepository.findJobByJobTitle(jobTitle);
     }
+
+   @Override
+   public List<Job> getJobByFederation(Federations federation) {
+      return jobRepository.findJobByFederation(federation);
+   }
     
 
 }

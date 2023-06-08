@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.dxvalley.project.models.Asset;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 
@@ -13,5 +14,6 @@ public interface AssetRepository extends JpaRepository <Asset, Long> {
     Asset findAssetByAssetName(String assetName);
     List<Asset> findAssetByUnion(Unions union);
     List<Asset> findAssetByPrCooperative(PrCooperative prCooperative);
+    List<Asset> findAssetByFederation(Federations federation);
      
 }

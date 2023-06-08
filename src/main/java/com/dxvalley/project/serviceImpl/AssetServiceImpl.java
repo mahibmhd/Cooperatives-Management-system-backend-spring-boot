@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.Asset;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.AssetRepository;
@@ -60,6 +61,11 @@ public class AssetServiceImpl  implements AssetService{
     @Override
     public List<Asset> getAssetByPrCooperative(PrCooperative prCooperative) {
       return assetRepositories.findAssetByPrCooperative(prCooperative);
+    }
+
+    @Override
+    public List<Asset> getAssetByFederation(Federations federation) {
+      return assetRepositories.findAssetByFederation(federation);
     }
     
 }

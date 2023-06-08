@@ -15,6 +15,5 @@ public class CooperativesApplication {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
-
 }
+

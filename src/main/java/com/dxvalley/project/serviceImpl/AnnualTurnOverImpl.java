@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.AnnualTurnOver;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.AnnualTurnOverRepository;
@@ -43,7 +44,6 @@ public class AnnualTurnOverImpl implements AnnualTurnOverService {
         return annualTurnOverRepositories.findAnnualTurnOverByAnnualTurnOverId(annualTurnOverId);
     }
 
-   
 
     @Override
     public void deleteAnnualTurnOver(Long annualTurnOverId) {
@@ -58,6 +58,11 @@ public class AnnualTurnOverImpl implements AnnualTurnOverService {
     @Override
     public List<AnnualTurnOver> getAnnualTurnOverByPrCooperative(PrCooperative prCooperative) {
        return annualTurnOverRepositories.findAnnualTurnOverByPrCooperative(prCooperative);
+    }
+
+    @Override
+    public List<AnnualTurnOver> getAnnualTurnOverByFederation(Federations federation) {
+        return annualTurnOverRepositories.findAnnualTurnOverByFederation(federation);
     }
 
     }

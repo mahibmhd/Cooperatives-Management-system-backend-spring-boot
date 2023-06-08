@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Member;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -61,6 +62,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> getMembersByPrCooperativeAndGender(PrCooperative prCooperative, String gender) {
        return memberRepository.findMemberByPrCooperativeAndGender(prCooperative, gender);
+    }
+
+    @Override
+    public List<Member> getMemberByFederation(Federations federation) {
+       return memberRepository.findMemberByFederation(federation);
+    }
+
+    @Override
+    public List<Member> getMemberByFederationAndGender(Federations federation, String gender) {
+        return memberRepository.findMemberByFederationAndGender(federation, gender);
     }
     
 }

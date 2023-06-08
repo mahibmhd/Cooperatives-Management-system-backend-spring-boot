@@ -37,4 +37,8 @@ public class Job {
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "union_Id")
 	private Unions union;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "federation_Id")
+    private Federations federation;
 }

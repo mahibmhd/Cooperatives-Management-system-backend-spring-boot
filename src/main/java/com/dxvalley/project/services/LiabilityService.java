@@ -2,6 +2,7 @@ package com.dxvalley.project.services;
 
 import java.util.List;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Liabilty;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -13,6 +14,7 @@ public interface LiabilityService {
     Liabilty getLiabiltyById(Long liabiltyId);
     List<Liabilty> getLiabiltyByUnion(Unions union);
     List<Liabilty> getLiabiltyByPrCooperative(PrCooperative prCooperative);
+    List<Liabilty> getLiabilityByFederation(Federations federation);
     //Member getTypeByName(String typeName);
     void deleteLiabilty( Long liabiltyId);
 }

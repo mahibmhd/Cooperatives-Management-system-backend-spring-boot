@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Member;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -14,4 +15,6 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
     List<Member> findMemberByUnionAndGender(Unions union,String geneder);
     List<Member> findMemberByPrCooperativeAndGender(PrCooperative prCooperative,String gender);
     List<Member> findMemberByPrCooperative(PrCooperative prCooperative);
+    List<Member> findMemberByFederation(Federations federation);
+    List<Member> findMemberByFederationAndGender(Federations federation, String gender);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Job;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -14,4 +15,5 @@ public interface JobRepository extends JpaRepository<Job, Long> {
     Job findJobByEmployeeNumber( Integer employeeNumber);  
     List<Job> findJobByUnion(Unions union);  
     List<Job> findJobByPrCooperative(PrCooperative prCooperative);
+    List<Job> findJobByFederation(Federations federation);
 }

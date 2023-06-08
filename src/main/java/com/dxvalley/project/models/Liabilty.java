@@ -37,6 +37,9 @@ public class Liabilty {
 	@JoinColumn(name = "prCooperative_Id")
 	private PrCooperative prCooperative;
 
-
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "federation_Id")
+    private Federations federation;
 
 }

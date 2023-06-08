@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.Commodity;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.CommodityService;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
 
@@ -31,6 +33,7 @@ public class CommodityController {
     private final CommodityService commodityService;
     private final UnionService unionService;
     private final PrCooperativeService prCooperativeService;
+    private final FederationService federationService;
     @GetMapping("/getcommodities")
     List<Commodity> getCommodities() {
         return this.commodityService.getCommodities();
@@ -53,6 +56,12 @@ public class CommodityController {
         return commodityService.getCommodityById(commodityId);
     }
 
+    @GetMapping("getByFederations/{federationId}")
+    List<Commodity> getCommodityByFederationId(@PathVariable Long federationId) {
+        Federations federation=federationService.getFederationByFederationId(federationId);
+        return commodityService.getCommodityByFederation(federation);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<CreateResponse> addCommodity(@RequestBody Commodity commodity) {
         commodityService.addCommodity(commodity);
@@ -65,11 +74,12 @@ public class CommodityController {
     Commodity editMember(@RequestBody Commodity tempCommodity, @PathVariable Long commodityId) {
         Commodity commodity = this.commodityService.getCommodityById(commodityId);
        commodity.setCommodityName(tempCommodity.getCommodityName());
-       commodity.setCommodityValue(tempCommodity.getCommodityValue()); 
+       //commodity.setCommodityValue(tempCommodity.getCommodityValue()); 
        commodity.setPrCooperative(tempCommodity.getPrCooperative());
        commodity.setDateGenerated(tempCommodity.getDateGenerated());
        commodity.setUnion(tempCommodity.getUnion());
        commodity.setType(tempCommodity.getType());
+       commodity.setFederation(tempCommodity.getFederation());
         return commodityService.editCommodity(commodity);
     }
 

@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dxvalley.project.models.Asset;
 import com.dxvalley.project.models.CreateResponse;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.services.AssetService;
+import com.dxvalley.project.services.FederationService;
 import com.dxvalley.project.services.PrCooperativeService;
 import com.dxvalley.project.services.UnionService;
 
@@ -33,6 +35,7 @@ public class AssetController {
     private final AssetService assetService;
     private final UnionService unioonService;
     private final PrCooperativeService prCooperativeeService;
+    private final FederationService federationService;
 
     @GetMapping("/getAssets")
     List<Asset> getAsset() {
@@ -50,29 +53,25 @@ public class AssetController {
   return assetService.getAssetByUnion(union);
 }
 
-@GetMapping("/prCooperative/{prCooperativeId}")
-List<Asset> getAssetByPrCooperativeId(@PathVariable Long prCooperativeId)  {
-PrCooperative prCooperative =prCooperativeeService.getPrCooperativeById(prCooperativeId);
-return assetService.getAssetByPrCooperative(prCooperative);
-}
+  @GetMapping("/prCooperative/{prCooperativeId}")
+  List<Asset> getAssetByPrCooperativeId(@PathVariable Long prCooperativeId)  {
+  PrCooperative prCooperative =prCooperativeeService.getPrCooperativeById(prCooperativeId);
+  return assetService.getAssetByPrCooperative(prCooperative);
+  }
+
+  @GetMapping("/federation/{federation_Id}")
+  List<Asset> getAssetByFederationId(@PathVariable Long federationId) {
+    Federations federation =federationService.getFederationByFederationId(federationId);
+    return assetService.getAssetByFederation(federation);
+  }
 
   @PostMapping("/add")
   public ResponseEntity<CreateResponse> addSector (@RequestBody Asset asset) {
-    Asset assetToBeChecked= assetService.getAssetByAssetName(asset.getAssetName());
-    if(assetToBeChecked!=null)
-    {
-        CreateResponse response = new CreateResponse("error","existing asset name");
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-    else
-    {
         assetService.addAsset(asset);
         CreateResponse response = new CreateResponse("success","Asset created successfully");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-  }
-
+      
   @PutMapping("/edit/{assetId}")
   Asset editAsset(@RequestBody Asset tempAsset, @PathVariable Long assetId) {
     Asset asset = this.assetService.getAssetById(assetId);
@@ -82,6 +81,7 @@ return assetService.getAssetByPrCooperative(prCooperative);
     asset.setDateGenerated(tempAsset.getDateGenerated());
     asset.setPrCooperative(tempAsset.getPrCooperative());
     asset.setUnion(tempAsset.getUnion());
+    asset.setFederation(tempAsset.getFederation());
     return assetService.editAsset(asset);
   }
     

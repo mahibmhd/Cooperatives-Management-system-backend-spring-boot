@@ -3,6 +3,7 @@ package com.dxvalley.project.services;
 import java.util.List;
 
 import com.dxvalley.project.models.Asset;
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
 
@@ -13,6 +14,7 @@ public interface AssetService {
     Asset getAssetById(Long assetId);
     List<Asset> getAssetByUnion(Unions union);
     List<Asset> getAssetByPrCooperative(PrCooperative prCooperative);
+    List<Asset> getAssetByFederation(Federations federation);
     
     Asset getAssetByAssetName(String assetName);
     void deleteAsset( Long assetId);

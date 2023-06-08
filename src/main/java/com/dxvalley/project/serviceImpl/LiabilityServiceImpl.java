@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dxvalley.project.models.Federations;
 import com.dxvalley.project.models.Liabilty;
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.Unions;
@@ -51,6 +52,11 @@ public class LiabilityServiceImpl implements LiabilityService{
     @Override
     public List<Liabilty> getLiabiltyByPrCooperative(PrCooperative prCooperative) {
         return liabilityRepository.findLiabiltyByPrCooperative(prCooperative);
+    }
+
+    @Override
+    public List<Liabilty> getLiabilityByFederation(Federations federation) {
+      return liabilityRepository.findLiablityByFederation(federation);
     }
     
 }
