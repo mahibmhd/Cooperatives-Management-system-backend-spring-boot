@@ -58,7 +58,7 @@ public class FederationExportDataController {
     private final LiabilityService liabilityService;
     private final PaidUpShareService paidUpShareService;
     private final OsLoanService osLoanService;
-   // private final PrCooperative prCooperative;
+ 
 
     private int no_of_Male_Stablishing_Member=0;
     private int no_of_Female_Stablishing_Member=0;
