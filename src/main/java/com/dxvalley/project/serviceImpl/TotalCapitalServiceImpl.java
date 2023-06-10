@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dxvalley.project.models.PrCooperative;
 import com.dxvalley.project.models.TotalCapital;
+import com.dxvalley.project.models.Unions;
 import com.dxvalley.project.repositories.TotalCapitalRepository;
 import com.dxvalley.project.services.TotalCapitalService;
 
@@ -45,6 +46,11 @@ public class TotalCapitalServiceImpl implements TotalCapitalService {
    @Override
    public List<TotalCapital> getTotalCapitalByPrCooperative(PrCooperative prCooperative) {
       return totalCapitalRepository.findTotalCapitalByPrCooperative(prCooperative);
+   }
+
+   @Override
+   public List<TotalCapital> geTotalCapitalByUnion(Unions union) {
+      return totalCapitalRepository.findTotalCapitalByUnion(union);
    }
 
   

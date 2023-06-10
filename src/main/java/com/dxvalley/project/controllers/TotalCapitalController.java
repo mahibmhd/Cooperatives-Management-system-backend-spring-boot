@@ -61,6 +61,7 @@ public class TotalCapitalController {
         totalCapital.setDateGenerated(tempTotalCapital.getDateGenerated());
         totalCapital.setTotalCapitalValue(tempTotalCapital.getTotalCapitalValue());
         totalCapital.setPrCooperative(tempTotalCapital.getPrCooperative());
+        totalCapital.setUnion(tempTotalCapital.getUnion());
         
         return totalCapitalService.editTotalCapital(totalCapital);
     }

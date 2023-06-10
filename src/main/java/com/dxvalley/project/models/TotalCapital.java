@@ -31,4 +31,8 @@ public class TotalCapital {
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "prCooperative_Id")
 	private PrCooperative prCooperative;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "unionId")
+    private Unions union;
 }
