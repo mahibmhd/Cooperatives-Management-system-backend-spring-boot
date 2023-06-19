@@ -10,4 +10,8 @@ public class UnionsReportData {
     private Integer no_of_Total_Stablishing_Member;
     private Double shareCapitalUponEstablishmnet;
     private String licensingOrgan;
+    private Integer no_Of_MaleMembers;
+    private Integer no_Of_FemaleMembers;
+    private Integer maleMembersUpOnEstablishement;
+    private Integer femaleMembersUpOnEstablishement; 
 }

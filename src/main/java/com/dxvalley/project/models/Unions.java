@@ -29,6 +29,10 @@ public class Unions {
     private Double shareCapitalUponEstablishmnet;
     private Boolean isActive;
     //private String licensingOrgan;
+    private Integer no_Of_MaleMembers;
+    private Integer no_Of_FemaleMembers;
+    private Integer maleMembersUpOnEstablishement;
+    private Integer femaleMembersUpOnEstablishement;
 
     //union address
     @OneToOne(cascade = CascadeType.ALL)

@@ -191,6 +191,10 @@ public class UnionsExpportDataController {
         UnionsReportData unionsReportData= new UnionsReportData();
         unionsReportData.setUnionName(m.getName());
         unionsReportData.setDateOfEstablishmnet(m.getDateOfEstablishmnet());
+        unionsReportData.setNo_Of_MaleMembers(m.getNo_Of_MaleMembers());
+        unionsReportData.setNo_Of_FemaleMembers(m.getNo_Of_FemaleMembers());
+        unionsReportData.setMaleMembersUpOnEstablishement(m.getMaleMembersUpOnEstablishement());
+        unionsReportData.setFemaleMembersUpOnEstablishement(m.getFemaleMembersUpOnEstablishement());
        // unionsReportData.setLicensingOrgan(m.getLicensingOrgan());
         List<Member> totalMembers=memberService.getMembersByUnion(m);
        no_of_Total_Stablishing_Member=0;
