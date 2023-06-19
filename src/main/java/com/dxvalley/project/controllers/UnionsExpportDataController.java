@@ -196,14 +196,35 @@ public class UnionsExpportDataController {
         unionsReportData.setMaleMembersUpOnEstablishement(m.getMaleMembersUpOnEstablishement());
         unionsReportData.setFemaleMembersUpOnEstablishement(m.getFemaleMembersUpOnEstablishement());
        // unionsReportData.setLicensingOrgan(m.getLicensingOrgan());
-        List<Member> totalMembers=memberService.getMembersByUnion(m);
-       no_of_Total_Stablishing_Member=0;
-       totalMembers.stream().forEach(b->{
-           if(b.getIsFounder()==true){
-               no_of_Total_Stablishing_Member++;
-           }
-       });
-       unionsReportData.setNo_of_Total_Stablishing_Member(no_of_Total_Stablishing_Member);
+       
+      List<Member> maleMembers=memberService.getMembersByUnionAndGender(m, "MALE"); 
+              no_of_Male_Stablishing_Member=0;
+              maleMembers.stream().forEach(z->{
+                  if(z.getIsFounder()==true){
+                      no_of_Male_Stablishing_Member++;
+                  }
+              });
+              List<Member> femaleMembers=memberService.getMembersByUnionAndGender(m, "FEMALE");
+              no_of_Female_Stablishing_Member=0;
+              femaleMembers.stream().forEach(a->{
+                  if(a.getIsFounder()==true)
+                  {
+                      no_of_Female_Stablishing_Member++;
+                  }
+              });
+            
+              unionsReportData.setMaleMembersUpOnEstablishement(no_of_Male_Stablishing_Member);
+              unionsReportData.setFemaleMembersUpOnEstablishement(no_of_Female_Stablishing_Member);
+            
+            List<Member> totalMembers=memberService.getMembersByUnion(m);
+              no_of_Total_Stablishing_Member=0;
+              totalMembers.stream().forEach(b->{
+                  if(b.getIsFounder()==true){
+                      no_of_Total_Stablishing_Member++;
+                  }
+              });
+              unionsReportData.setNo_of_Total_Stablishing_Member(no_of_Total_Stablishing_Member);
+      // unionsReportData.setNo_of_Total_Stablishing_Member(no_of_Total_Stablishing_Member);
        unionsReportData.setShareCapitalUponEstablishmnet(m.getShareCapitalUponEstablishmnet());
        unionsReportDatas.add(unionsReportData);
     });

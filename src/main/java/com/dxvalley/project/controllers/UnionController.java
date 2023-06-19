@@ -64,6 +64,10 @@ public class UnionController {
     union.setIsActive(tempUnion.getIsActive());
     union.setAddress(tempUnion.getAddress());
     //union.setLicensingOrgan(tempUnion.getLicensingOrgan());
+    union.setNo_Of_MaleMembers(tempUnion.getNo_Of_MaleMembers());
+    union.setNo_Of_FemaleMembers(tempUnion.getNo_Of_FemaleMembers());
+    union.setMaleMembersUpOnEstablishement(tempUnion.getMaleMembersUpOnEstablishement());
+    union.setFemaleMembersUpOnEstablishement(tempUnion.getFemaleMembersUpOnEstablishement());
     union.setSector(tempUnion.getSector());
     union.setType(tempUnion.getType());
     union.setFederations(tempUnion.getFederations());
