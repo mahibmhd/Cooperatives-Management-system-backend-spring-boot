@@ -62,6 +62,8 @@ public class UnionsExpportDataController {
     private int no_of_Male_Stablishing_Member=0;
     private int no_of_Female_Stablishing_Member=0;
     private int no_of_Total_Stablishing_Member=0;
+    private int no_of_male=0;
+    private int no_of_female=0;
 
     @GetMapping("/getUnionsExport")
     List<UnionsExportData> getUnions() {
@@ -87,13 +89,37 @@ public class UnionsExpportDataController {
         List<PrCooperative> naPrCooperatives=prCooperativeService.getPrCooperativeByUnionAndIsActive(x, false);
         unionsExportData.setNo_of_Non_ActivePrCooperatives(naPrCooperatives.size());
         List<PrCooperative> totalPrCooperatives=prCooperativeService.getPrCooperativeByUnion(x);
+
+
+
         unionsExportData.setTotal_No_of_PrCooperatives(totalPrCooperatives.size());
         List<Member> maleMembers=memberService.getMembersByUnionAndGender(x, "MALE");
-        unionsExportData.setNo_of_Male_Individual_Member(maleMembers.size());
+        no_of_male=0;
+        no_of_female=0;
+        
+        List<PrCooperative> prCooperatives=prCooperativeService.getPrCooperativeByUnion(x);
+        prCooperatives.stream().forEach(p->{
+            if(p.getNo_Of_FemaleMembers()!=null)
+            {
+                     no_of_female+=p.getNo_Of_FemaleMembers();
+            }
+            if(p.getNo_Of_MaleMembers()!=null)
+            {
+                    no_of_male+=p.getNo_Of_MaleMembers();
+            }
+            
+           
+        });
+        unionsExportData.setNo_of_Male_Individual_Member(no_of_male);
+
+
+
         List<Member> femaleMembers=memberService.getMembersByUnionAndGender(x, "FEMALE");
-        unionsExportData.setNo_of_Female_Individual_Member(femaleMembers.size());
+        unionsExportData.setNo_of_Female_Individual_Member(no_of_female);
+
+
         List<Member> totalMembers=memberService.getMembersByUnion(x);
-        unionsExportData.setTotal_no_of_Individual_Member(totalMembers.size());
+        unionsExportData.setTotal_no_of_Individual_Member(no_of_male+no_of_female);
         List<Account> accounts=accountService.getAccountByUnion(x);
         List<AccountInfo> accountInfos= new ArrayList<AccountInfo>();
         accounts.stream().forEach(y->{
