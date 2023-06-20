@@ -93,7 +93,7 @@ public class UnionsExpportDataController {
 
 
         unionsExportData.setTotal_No_of_PrCooperatives(totalPrCooperatives.size());
-        List<Member> maleMembers=memberService.getMembersByUnionAndGender(x, "MALE");
+        //List<Member> maleMembers=memberService.getMembersByUnionAndGender(x, "MALE");
         no_of_male=0;
         no_of_female=0;
         
@@ -114,7 +114,7 @@ public class UnionsExpportDataController {
 
 
 
-        List<Member> femaleMembers=memberService.getMembersByUnionAndGender(x, "FEMALE");
+        //List<Member> femaleMembers=memberService.getMembersByUnionAndGender(x, "FEMALE");
         unionsExportData.setNo_of_Female_Individual_Member(no_of_female);
 
 
