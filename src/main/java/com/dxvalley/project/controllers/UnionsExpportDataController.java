@@ -134,18 +134,18 @@ public class UnionsExpportDataController {
         unionsExportData.setAccountInfos(accountInfos);
         unionsExportData.setYearOfStablishment(x.getDateOfEstablishmnet());
         no_of_Male_Stablishing_Member=0;
-        maleMembers.stream().forEach(z->{
-            if(z.getIsFounder()==true){
-                no_of_Male_Stablishing_Member++;
+        prCooperatives.stream().forEach(z->{
+            if(z.getMaleMembersUpOnEstablishement()!=null){
+                no_of_Male_Stablishing_Member+=z.getMaleMembersUpOnEstablishement();
             }
         });
         unionsExportData.setNo_of_Male_Stablishing_Member(no_of_Male_Stablishing_Member);
 
         no_of_Female_Stablishing_Member=0;
-        femaleMembers.stream().forEach(a->{
-            if(a.getIsFounder()==true)
+        prCooperatives.stream().forEach(a->{
+            if(a.getFemaleMembersUpOnEstablishement()!=null)
             {
-                no_of_Female_Stablishing_Member++;
+                no_of_Female_Stablishing_Member+=a.getFemaleMembersUpOnEstablishement();
             }
         });
         unionsExportData.setNo_of_Female_Stablishing_Member(no_of_Female_Stablishing_Member);
@@ -155,7 +155,7 @@ public class UnionsExpportDataController {
                 no_of_Total_Stablishing_Member++;
             }
         });
-        unionsExportData.setNo_of_Total_Stablishing_Member(no_of_Total_Stablishing_Member);
+        unionsExportData.setNo_of_Total_Stablishing_Member(no_of_Male_Stablishing_Member+no_of_Female_Stablishing_Member);
         unionsExportData.setShareCapitalUponEstablishmnet(x.getShareCapitalUponEstablishmnet());
         List<AnnualTurnOver> annualTurnOvers=annualTurnOverService.getAnnualTurnOverByUnion(x);
         List<AnnualTurnOverDto> annualTurnOverDtos= new ArrayList<AnnualTurnOverDto>();
