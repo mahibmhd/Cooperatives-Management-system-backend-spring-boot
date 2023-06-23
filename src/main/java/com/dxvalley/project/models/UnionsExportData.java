@@ -30,6 +30,8 @@ public class UnionsExportData {
     private List<LiabilityDto> liabilities;
     private List<PaidUpShareDto> paidUpShares;
     private List<OsLoanDto> osLoans;
+    //private List<Unions> no_of_unions_members;
+
     
 }
 

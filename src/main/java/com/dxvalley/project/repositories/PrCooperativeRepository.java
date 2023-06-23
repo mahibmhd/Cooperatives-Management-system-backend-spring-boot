@@ -17,4 +17,5 @@ public interface PrCooperativeRepository extends JpaRepository<PrCooperative, Lo
     List<PrCooperative> findPrCooperativesByFederationAndIsActive(Federations federation,Boolean isActive);
     List<PrCooperative> findPrCooperativesByFederation(Federations federation);
     
+    
 }
